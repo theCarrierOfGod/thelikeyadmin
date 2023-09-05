@@ -37,8 +37,8 @@ const Adminsidebar = () => {
 
                     {/* <!-- dashboard  --> */}
 
-                    <li className={`nav-item ${location.pathname === "/administration" ? "active" : ""} border-bottom`}>
-                        <Link className="nav-link " to="/administration">
+                    <li className={`nav-item ${location.pathname === "istration" ? "active" : ""} border-bottom`}>
+                        <Link className="nav-link " to="istration">
                             <i className="mdi mdi-home menu-icon m-0 p-0"></i> &nbsp; &nbsp;
                             <span className="menu-title">Admin Home</span>
                         </Link>
@@ -46,8 +46,8 @@ const Adminsidebar = () => {
 
                     {/* <!-- new promotion  --> */}
 
-                    <li className={`nav-item ${location.pathname === "/admin/users" ? "active" : ""} border-bottom`}>
-                        <Link className="nav-link" to="/admin/users">
+                    <li className={`nav-item ${location.pathname === "/users" ? "active" : ""} border-bottom`}>
+                        <Link className="nav-link" to="/users">
                             <i className='fa fa-users m-0 p-0 menu-icon'></i> &nbsp; &nbsp;
                             <span className="menu-title">Manage Users</span>
                         </Link>
@@ -63,17 +63,17 @@ const Adminsidebar = () => {
                         <div class="collapse" id="tasks">
                             <ul class="nav flex-column sub-menu">
                                 <li className={`nav-item ${location.pathname === "/make_money" ? "active" : ""}`}>
-                                    <Link className="nav-link" to="/admin/proofs/pending">
+                                    <Link className="nav-link" to="/proofs/pending">
                                         <span className="menu-title">Pending Proofs</span>
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${location.pathname === "/task/new" ? "active" : ""}`}>
-                                    <Link className="nav-link" to="/admin/proofs/rejected">
+                                    <Link className="nav-link" to="/proofs/rejected">
                                         <span className="menu-title">Rejected Proofs</span>
                                     </Link>
                                 </li>
-                                <li className={`nav-item ${location.pathname === "/admin/proofs/approved" ? "active" : ""}`}>
-                                    <Link className="nav-link" to="/admin/proofs/approved">
+                                <li className={`nav-item ${location.pathname === "/proofs/approved" ? "active" : ""}`}>
+                                    <Link className="nav-link" to="/proofs/approved">
                                         <span className="menu-title">Approved Proofs</span>
                                     </Link>
                                 </li>
