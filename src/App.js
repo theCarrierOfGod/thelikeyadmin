@@ -16,6 +16,7 @@ import Users from './admin/Users';
 import ApprovedProofs from './admin/Tasks/ApprovedProofs';
 import RejectedProofs from './admin/Tasks/RejectedProofs';
 import PendingProofs from './admin/Tasks/PendingProofs';
+import SignIn from './pages/signIn/SignIn';
 
 
 function App() {
