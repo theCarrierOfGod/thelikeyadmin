@@ -25,7 +25,7 @@ const SignIn = () => {
     const getRef = () => {
         let theRef = searchParams.get('ref');
         if (theRef === "" || theRef === null) {
-            setRef('/dashboard')
+            setRef('/')
         } else {
             setRef(`${theRef}`);
         }
