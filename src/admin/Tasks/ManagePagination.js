@@ -32,12 +32,16 @@ const ManagePagination = ({ items, perpage, type }) => {
         }
     }
 
-    const rejectProof = async (proofID) => {
+    const rejectProof = async (proofID, reason) => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/proof/reject/${proofID}`);
+            let data = {
+                proofID: proofID,
+                reason: reason,
+            }
+            const res = await axios.post(`${hook.endpoint}/admin/proof/reject`, data);
             console.log(res.data);
         } catch (error) {
-            setProofs([]);
+            // setProofs([]);
         }
     }
     return (
@@ -103,7 +107,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                                 icon: 'error'
                                                             })
                                                         } else {
-                                                            rejectProof(proof.proofID)
+                                                            rejectProof(proof.proofID, value)
                                                             swal({
                                                                 text: value,
                                                                 icon: "success",
