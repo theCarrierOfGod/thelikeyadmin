@@ -1,10 +1,44 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import Adminheader from '../Adminheader'
 import Adminsidebar from '../Adminsidebar'
 import Footer from '../../user/Footer'
-import Adminheader from '../Adminheader'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useHook } from '../../contexts/Hook'
+import { useEffect } from 'react'
+import axios from 'axios'
+import ManagePagination from './ManagePagination'
 
-const ApprovedProofs = () => {
+
+
+const AprrovedProofs = () => {
+    const hook = useHook();
+    const location = useLocation();
+
+    const [proofs, setProofs] = useState([]);
+
+    const AprrovedProofs = async () => {
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/proofs/approved`);
+            setProofs(res.data)
+        } catch (error) {
+            setProofs([]);
+        }
+    }
+
+    const getNow = () => {
+        AprrovedProofs();
+    }
+
+    useEffect(() => {
+        getNow();
+
+        return () => {
+            return true;
+        }
+    }, [location.key])
+
     return (
         <div>
             <Helmet>
@@ -36,8 +70,8 @@ const ApprovedProofs = () => {
                             <div className="row justify-content-center">
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
-                                        <div className="card-body p-2 table-responsive">
-
+                                        <div className="card-body p-2 table-responsive row">
+                                            <ManagePagination items={proofs} perpage={2} type={'approved'} />
                                         </div>
                                     </div>
                                 </div>
@@ -52,4 +86,4 @@ const ApprovedProofs = () => {
     )
 }
 
-export default ApprovedProofs
+export default AprrovedProofs

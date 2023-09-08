@@ -90,7 +90,7 @@ function App() {
 
                   <Route
                     exact
-                    path="/admin/proofs/rejected"
+                    path="/proofs/rejected"
                     element={
                       <Suspense fallback={<Preloader />}>
                         <MustLogin>

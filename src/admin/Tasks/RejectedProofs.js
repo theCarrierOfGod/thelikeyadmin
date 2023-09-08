@@ -3,8 +3,42 @@ import { Helmet } from 'react-helmet'
 import Adminheader from '../Adminheader'
 import Adminsidebar from '../Adminsidebar'
 import Footer from '../../user/Footer'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useHook } from '../../contexts/Hook'
+import { useEffect } from 'react'
+import axios from 'axios'
+import ManagePagination from './ManagePagination'
+
+
 
 const RejectedProofs = () => {
+    const hook = useHook();
+    const location = useLocation();
+
+    const [proofs, setProofs] = useState([]);
+
+    const RejectedProofs = async () => {
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/proofs/rejected`);
+            setProofs(res.data)
+        } catch (error) {
+            setProofs([]);
+        }
+    }
+
+    const getNow = () => {
+        RejectedProofs();
+    }
+
+    useEffect(() => {
+        getNow();
+
+        return () => {
+            return true;
+        }
+    }, [location.key])
+
     return (
         <div>
             <Helmet>
@@ -22,7 +56,7 @@ const RejectedProofs = () => {
                                 <h3 className="page-title">
                                     <span className="page-title-icon bg-info text-white me-2">
                                         <i className="mdi mdi-home"></i>
-                                    </span> APPROVED PROOFS
+                                    </span> REJECTED PROOFS
                                 </h3>
                                 <nav aria-label="breadcrumb">
                                     <ul className="breadcrumb">
@@ -32,11 +66,12 @@ const RejectedProofs = () => {
                                     </ul>
                                 </nav>
                             </div>
+
                             <div className="row justify-content-center">
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
-                                        <div className="card-body p-2 table-responsive">
-
+                                        <div className="card-body p-2 table-responsive row justify-content-between">
+                                            <ManagePagination items={proofs} perpage={2} type={'pending'} />
                                         </div>
                                     </div>
                                 </div>
