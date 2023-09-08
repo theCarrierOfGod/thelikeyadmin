@@ -37,8 +37,8 @@ const Adminsidebar = () => {
 
                     {/* <!-- dashboard  --> */}
 
-                    <li className={`nav-item ${location.pathname === "istration" ? "active" : ""} border-bottom`}>
-                        <Link className="nav-link " to="istration">
+                    <li className={`nav-item ${location.pathname === "/" ? "active" : ""} border-bottom`}>
+                        <Link className="nav-link " to="/">
                             <i className="mdi mdi-home menu-icon m-0 p-0"></i> &nbsp; &nbsp;
                             <span className="menu-title">Admin Home</span>
                         </Link>

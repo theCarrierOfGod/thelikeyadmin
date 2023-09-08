@@ -54,6 +54,18 @@ function App() {
 
                   <Route
                     exact
+                    path="/dashboard"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <Admindashboard />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+
+                  <Route
+                    exact
                     path="/users"
                     element={
                       <Suspense fallback={<Preloader />}>
