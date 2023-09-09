@@ -17,6 +17,7 @@ import ApprovedProofs from './admin/Tasks/ApprovedProofs';
 import RejectedProofs from './admin/Tasks/RejectedProofs';
 import PendingProofs from './admin/Tasks/PendingProofs';
 import SignIn from './pages/signIn/SignIn';
+import AddCategories from './admin/AddCategories';
 
 
 function App() {
@@ -106,6 +107,17 @@ function App() {
                       <Suspense fallback={<Preloader />}>
                         <MustLogin>
                           <PendingProofs />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/new/categories"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <AddCategories />
                         </MustLogin>
                       </Suspense>
                     }
