@@ -128,74 +128,74 @@ const ManagePagination = ({ items, perpage, type }) => {
                                 </p>
                                 <strong>Task Description:</strong>
                                 <div dangerouslySetInnerHTML={{ __html: proof.description }}></div>
-                                {/* {type === "pending" ? (
-                                    <> */}
-                                    <hr />
-                                <div className='d-flex justify-content-center p-3'>
-                                    <button
-                                        className='button is-success'
-                                        onClick={() => {
-                                            swal({
-                                                title: 'Approve Proof',
-                                                text: 'Do you really want to proceed?',
-                                                icon: 'warning',
-                                                buttons: ["Stop", "Yes, Proceed!"],
-                                            })
-                                                .then((res) => {
-                                                    if (res) {
-                                                        approveProof(proof.proofID)
-                                                    } else {
-                                                        swal({
-                                                            title: 'Approve Proof',
-                                                            text: 'Cancelled by user',
-                                                            icon: 'error',
-                                                            timer: 2000
+                                {type === "pending" ? (
+                                    <>
+                                        <hr />
+                                        <div className='d-flex justify-content-center p-3'>
+                                            <button
+                                                className='button is-success'
+                                                onClick={() => {
+                                                    swal({
+                                                        title: 'Approve Proof',
+                                                        text: 'Do you really want to proceed?',
+                                                        icon: 'warning',
+                                                        buttons: ["Stop", "Yes, Proceed!"],
+                                                    })
+                                                        .then((res) => {
+                                                            if (res) {
+                                                                approveProof(proof.proofID)
+                                                            } else {
+                                                                swal({
+                                                                    title: 'Approve Proof',
+                                                                    text: 'Cancelled by user',
+                                                                    icon: 'error',
+                                                                    timer: 2000
+                                                                })
+                                                            }
                                                         })
-                                                    }
-                                                })
-                                        }}
-                                    >
-                                        Approve
-                                    </button>
-                                    <span style={{ width: '30px', height: '30px' }}></span>
-                                    <button
-                                        className='button is-warning'
-                                        onClick={() => {
-                                            swal({
-                                                title: "Reason for rejection",
-                                                icon: 'warning',
-                                                content: {
-                                                    element: "input",
-                                                    attributes: {
-                                                        placeholder: "Specify reason for rejection",
-                                                        type: "text",
-                                                    },
-                                                    showCancelButton: true,
-                                                    closeOnConfirm: false,
-                                                    animation: "slide-from-top",
-                                                },
-                                            })
-                                                .then((value) => {
-                                                    if (value.length === 0) {
-                                                        swal({
-                                                            text: 'Process Teminated',
-                                                            icon: 'error'
+                                                }}
+                                            >
+                                                Approve
+                                            </button>
+                                            <span style={{ width: '30px', height: '30px' }}></span>
+                                            <button
+                                                className='button is-warning'
+                                                onClick={() => {
+                                                    swal({
+                                                        title: "Reason for rejection",
+                                                        icon: 'warning',
+                                                        content: {
+                                                            element: "input",
+                                                            attributes: {
+                                                                placeholder: "Specify reason for rejection",
+                                                                type: "text",
+                                                            },
+                                                            showCancelButton: true,
+                                                            closeOnConfirm: false,
+                                                            animation: "slide-from-top",
+                                                        },
+                                                    })
+                                                        .then((value) => {
+                                                            if (value.length === 0) {
+                                                                swal({
+                                                                    text: 'Process Teminated',
+                                                                    icon: 'error'
+                                                                })
+                                                            } else {
+                                                                rejectProof(proof.proofID, value)
+                                                                swal({
+                                                                    text: value,
+                                                                    icon: "success",
+                                                                })
+                                                            }
                                                         })
-                                                    } else {
-                                                        rejectProof(proof.proofID, value)
-                                                        swal({
-                                                            text: value,
-                                                            icon: "success",
-                                                        })
-                                                    }
-                                                })
-                                        }}
-                                    >
-                                        Reject
-                                    </button>
-                                </div>
-                                {/* </>
-                                ) : null} */}
+                                                }}
+                                            >
+                                                Reject
+                                            </button>
+                                        </div>
+                                    </>
+                                ) : null}
                             </div>
                             {JSON.parse(proof.proofURL).map((image) => (
                                 <div className='card-img'>

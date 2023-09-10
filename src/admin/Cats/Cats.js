@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import './pagination.css'
+import '../pagination.css'
 import swal from 'sweetalert';
 import axios from 'axios';
-import { useHook } from '../contexts/Hook';
+import { useHook } from '../../contexts/Hook';
 
-const Userpagination = ({ items, perpage }) => {
+const Cats = ({ items, perpage }) => {
     const hook = useHook();
     const itemPerPage = perpage;
     const total = items.length;
@@ -96,6 +96,19 @@ const Userpagination = ({ items, perpage }) => {
             return false;
         }
     }
+
+    const deleteSub = async (id) => {
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/delete/sub/${id}`);
+            if (res.data) {
+
+            } else {
+
+            }
+        } catch (error) {
+
+        }
+    }
     return (
         <>
             <div>
@@ -105,69 +118,49 @@ const Userpagination = ({ items, perpage }) => {
                     </div>
                 </div>
             </div>
-            <div className="table-responsive">
-                <table className='table table-stripped'>
-                    <thead>
-                        <tr>
-                            <th><abbr title="Serial Number">#</abbr></th>
-                            <th>Username</th>
-                            <th><abbr title="Email address">Email</abbr></th>
-                            <th><abbr title="Phone number">Phone</abbr></th>
-                            <th>Location</th>
-                            <th>Earned</th>
-                            <th>Deposited</th>
-                            <th>Referral ID</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th><abbr title="Serial Number">#</abbr></th>
-                            <th>Username</th>
-                            <th><abbr title="Email address">Email</abbr></th>
-                            <th><abbr title="Phone number">Phone</abbr></th>
-                            <th>Location</th>
-                            <th>Earned</th>
-                            <th>Deposited</th>
-                            <th>Referral ID</th>
-                            <th>Status</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        {currentItems.map((user, index) => (
-                            <>
-                                <tr>
-                                    <th>{index + 1}</th>
-                                    <td>
-                                        <strong>
-                                            {user.username}
-                                        </strong>
-                                    </td>
-                                    <td>{user.email}</td>
-                                    <td>{user.phonenumber}</td>
-                                    <td>
-                                        {user.location}
-                                    </td>
-                                    <td>{user.earned}</td>
-                                    <td>{user.deposited}</td>
-                                    <td>{user.referee !== "" ? user.referee : 'admin' }</td>
-                                    <td>
-                                        <button className={user.verified === '0' ? 'button is-link is-light' : 'd-none'} onClick={() => { activateAccount(user.username) }}>
-                                            Activate
-                                        </button>
-                                        <button className={user.verified === '1' ? 'button is-link is-light' : 'd-none'} onClick={() => { suspendAccount(user.username) }}>
-                                            Suspend
-                                        </button>
-                                        <button className={user.verified === '2' ? 'button is-link is-light' : 'd-none'} onClick={() => { reactivateAccount(user.username) }}>
-                                            Reactivate
-                                        </button>
-                                    </td>
-                                </tr>
-                            </>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            <section className='row'>
+                {currentItems.map((user, index) => (
+                    <>
+                        <div className='col-sm-9 col-md-6 mb-3 mt-2'>
+                            <div className='card'>
+                                <div className='card-header'>
+                                    <strong>
+                                        {user[0].name} &nbsp; <small>({user['sub'].length})</small>
+                                    </strong>
+                                </div>
+                                <div className='card-body p-3'>
+                                    <p>
+                                        Sub-Categories
+                                    </p>
+                                    <table className='table table-stripped'>
+                                        {user['sub'].map((small, index) => (
+                                            <>
+                                                <tr style={{ textAlign: 'left' }}>
+                                                    <th>{index + 1}.</th>
+                                                    <td>
+                                                        {small.V}
+                                                    </td>
+                                                    <td>
+                                                        <button className='button is-danger p-1'
+                                                            onClick={() => {
+                                                                if (window.confirm('Are you sure you want to delete this sub category?')) {
+                                                                    deleteSub(small.id)
+                                                                } else {
+                                                                    alert('Cancelled by user');
+                                                                }
+                                                            }}
+                                                        >Delete</button>
+                                                    </td>
+                                                </tr>
+                                            </>
+                                        ))}
+                                    </table>
+                                </div>
+                            </div>
+                        </div >
+                    </>
+                ))}
+            </section >
 
             <div className={total === 0 ? "d-none" : "col-lg-12 mt-4 text-right"} style={{ textAlign: 'right' }}>
                 <span onClick={() => handlePrevious()} className={currentPage === 1 ? 'd-none' : 'button btn-info mr-3 p-1'} title={'Previous Page'} >Previous page</span>
@@ -181,5 +174,5 @@ const Userpagination = ({ items, perpage }) => {
     )
 }
 
-export default Userpagination
+export default Cats
 

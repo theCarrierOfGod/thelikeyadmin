@@ -18,6 +18,7 @@ import RejectedProofs from './admin/Tasks/RejectedProofs';
 import PendingProofs from './admin/Tasks/PendingProofs';
 import SignIn from './pages/signIn/SignIn';
 import AddCategories from './admin/AddCategories';
+import Categories from './admin/Categories';
 
 
 function App() {
@@ -118,6 +119,17 @@ function App() {
                       <Suspense fallback={<Preloader />}>
                         <MustLogin>
                           <AddCategories />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/categories"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <Categories />
                         </MustLogin>
                       </Suspense>
                     }

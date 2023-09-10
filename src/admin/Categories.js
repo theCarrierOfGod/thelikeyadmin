@@ -1,41 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
-import { Link, useLocation } from 'react-router-dom'
-import { useAuth } from '../contexts/Auth'
-import { useHook } from '../contexts/Hook'
-import { useUser } from '../contexts/User'
-import { useWallet } from '../contexts/Wallet'
+import React, { useEffect } from 'react'
 import Adminheader from './Adminheader'
-import Adminsidebar from './Adminsidebar'
-import Userpagination from './Userpagination'
-import axios from 'axios'
-import swal from 'sweetalert'
 import Footer from '../user/Footer'
+import { Helmet } from 'react-helmet'
+import Adminsidebar from './Adminsidebar'
+import { useState } from 'react'
+import axios from 'axios'
+import { useHook } from '../contexts/Hook'
+import swal from 'sweetalert'
+import { Link, useLocation } from 'react-router-dom'
+import Cats from './Cats/Cats'
 
-const Users = () => {
-    const userHook = useUser();
+const Categories = () => {
     const hook = useHook();
-    const auth = useAuth();
     const location = useLocation();
-    const walletHook = useWallet();
-    const [ad, setAd] = useState();
-
-    const [users, setUsers] = useState([]);
+    const [adding, setAdding] = useState('');
+    const [type, setType] = useState('promotion');
+    const [categories, setCategories] = useState([]);
 
     const allUsers = async () => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/users`);
-            if (res.data.users) {
-                setUsers(res.data.users);
+            const res = await axios.get(`${hook.endpoint}/admin/categories/${type}`);
+            if (res.data) {
+                setCategories(res.data);
             } else {
-                setUsers([])
+                setCategories([])
             }
         } catch (error) {
-            setUsers([])
+            setCategories([])
         }
     }
-
-    
 
     const getNow = () => {
         allUsers();
@@ -47,8 +40,7 @@ const Users = () => {
         return () => {
             return true;
         }
-    }, [location.key])
-
+    }, [location.key, type])
 
     return (
         <>
@@ -67,7 +59,7 @@ const Users = () => {
                                 <h3 className="page-title">
                                     <span className="page-title-icon bg-info text-white me-2">
                                         <i className="mdi mdi-home"></i>
-                                    </span> DASHBOARD
+                                    </span> TASK N PROMOTION CATEGORIES
                                 </h3>
                                 <nav aria-label="breadcrumb">
                                     <ul className="breadcrumb">
@@ -78,15 +70,28 @@ const Users = () => {
                                 </nav>
                             </div>
 
+
+
                             <div className="row justify-content-center">
+                                <div className='col-md-12 stretch-card grid-margin'>
+                                    <label htmlFor='type'>
+                                        Category Type
+                                    </label>
+                                    <select className='form-select' id='type' onChange={(e) => setType(e.target.value)} defaultChecked={type}>
+                                        <option value={'promotion'} selected={type === 'promotion'}>Promotion</option>
+                                        <option value={'task'} selected={type === 'task'}>Task</option>
+                                    </select>
+                                </div>
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
-                                            {users.length === 0 ? "" : (
-                                                <>
-                                                    <Userpagination items={users} perpage={10} />
-                                                </>
-                                            )}
+                                            <section className=''>
+                                                {categories.length === 0 ? "" : (
+                                                    <>
+                                                        <Cats items={categories} perpage={3} />
+                                                    </>
+                                                )}
+                                            </section>
                                         </div>
                                     </div>
                                 </div>
@@ -94,11 +99,10 @@ const Users = () => {
                         </div>
                     </div>
                 </div>
-                {/* </div> */}
                 <Footer />
             </div>
         </>
     )
 }
 
-export default Users
+export default Categories

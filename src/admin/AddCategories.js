@@ -7,6 +7,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useHook } from '../contexts/Hook'
 import swal from 'sweetalert'
+import { Link } from 'react-router-dom'
 
 const AddCategories = () => {
     const hook = useHook();
@@ -101,7 +102,8 @@ const AddCategories = () => {
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
                                             <section className='notification is-info is-light'>
-                                                NOTE: All input fields will be in lower case
+                                                NOTE: All input fields will be in lower case <br /> <br />
+                                                <Link to="/categories" className='button is-link' style={{ textDecoration: 'none' }}>See All</Link>
                                             </section>
                                             <form onSubmit={e => createNew(e)} id="create-new-form">
                                                 <div class="field">
@@ -129,7 +131,7 @@ const AddCategories = () => {
                                                     <div class="control">
                                                         <textarea class="textarea" value={subCategory} onChange={(e) => setSubCategory(e.target.value)} placeholder="SubCategory(s)"></textarea>
                                                     </div>
-                                                    <small className='subtitle is-info' style={{ fontSize: '10px' }} >Separate the with commas</small>
+                                                    <small className='subtitle is-info' style={{ fontSize: '10px' }} >Separate them with commas</small>
                                                 </div>
 
                                                 <div class="field is-grouped">
