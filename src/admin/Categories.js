@@ -70,10 +70,11 @@ const Categories = () => {
                                 </nav>
                             </div>
 
-
-
-                            <div className="row justify-content-center">
-                                <div className='col-md-12 stretch-card grid-margin'>
+                            <div className="page-header">
+                                <h3 className="page-title">
+                                    <Link to="/categories" className='button is-link' style={{ textDecoration: 'none' }}>Add New</Link>
+                                </h3>
+                                <div className='page-title'>
                                     <label htmlFor='type'>
                                         Category Type
                                     </label>
@@ -82,6 +83,12 @@ const Categories = () => {
                                         <option value={'task'} selected={type === 'task'}>Task</option>
                                     </select>
                                 </div>
+                            </div>
+
+
+
+                            <div className="row justify-content-center">
+
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">

@@ -136,6 +136,14 @@ const Adminsidebar = () => {
                         </div>
                     </li>
 
+                    {/* <!-- categories  --> */}
+
+                    <li className={`nav-item ${location.pathname === "/categories" ? "active" : ""} border-bottom`}>
+                        <Link className="nav-link" to="/categories">
+                            <i className='fa fa-users m-0 p-0 menu-icon'></i> &nbsp; &nbsp;
+                            <span className="menu-title">Categories</span>
+                        </Link>
+                    </li>
 
                     {/* <!-- signout  --> */}
 

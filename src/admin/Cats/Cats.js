@@ -121,7 +121,7 @@ const Cats = ({ items, perpage }) => {
             <section className='row'>
                 {currentItems.map((user, index) => (
                     <>
-                        <div className='col-sm-9 col-md-6 mb-3 mt-2'>
+                        <div className='col-sm-12 col-md-6 mb-3 mt-2'>
                             <div className='card'>
                                 <div className='card-header'>
                                     <strong>
