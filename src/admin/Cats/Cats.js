@@ -132,29 +132,31 @@ const Cats = ({ items, perpage }) => {
                                     <p>
                                         Sub-Categories
                                     </p>
-                                    <table className='table table-stripped'>
-                                        {user['sub'].map((small, index) => (
-                                            <>
-                                                <tr style={{ textAlign: 'left' }}>
-                                                    <th>{index + 1}.</th>
-                                                    <td>
-                                                        {small.V}
-                                                    </td>
-                                                    <td>
-                                                        <button className='button is-danger p-1'
-                                                            onClick={() => {
-                                                                if (window.confirm('Are you sure you want to delete this sub category?')) {
-                                                                    deleteSub(small.id)
-                                                                } else {
-                                                                    alert('Cancelled by user');
-                                                                }
-                                                            }}
-                                                        >Delete</button>
-                                                    </td>
-                                                </tr>
-                                            </>
-                                        ))}
-                                    </table>
+                                    <div className='table-responsive'>
+                                        <table className='table table-stripped'>
+                                            {user['sub'].map((small, index) => (
+                                                <>
+                                                    <tr style={{ textAlign: 'left' }}>
+                                                        <th>{index + 1}.</th>
+                                                        <td>
+                                                            {small.V}
+                                                        </td>
+                                                        <td>
+                                                            <button className='button is-danger p-1'
+                                                                onClick={() => {
+                                                                    if (window.confirm('Are you sure you want to delete this sub category?')) {
+                                                                        deleteSub(small.id)
+                                                                    } else {
+                                                                        alert('Cancelled by user');
+                                                                    }
+                                                                }}
+                                                            >Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                </>
+                                            ))}
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div >
