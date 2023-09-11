@@ -62,12 +62,17 @@ const Adminsidebar = () => {
                         </a>
                         <div class="collapse" id="tasks">
                             <ul class="nav flex-column sub-menu">
-                                <li className={`nav-item ${location.pathname === "/make_money" ? "active" : ""}`}>
+                                <li className={`nav-item ${location.pathname === "/tasks" ? "active" : ""}`}>
+                                    <Link className="nav-link" to="/tasks">
+                                        <span className="menu-title">All Tasks</span>
+                                    </Link>
+                                </li>
+                                <li className={`nav-item ${location.pathname === "/proofs/pending" ? "active" : ""}`}>
                                     <Link className="nav-link" to="/proofs/pending">
                                         <span className="menu-title">Pending Proofs</span>
                                     </Link>
                                 </li>
-                                <li className={`nav-item ${location.pathname === "/task/new" ? "active" : ""}`}>
+                                <li className={`nav-item ${location.pathname === "/proofs/rejected" ? "active" : ""}`}>
                                     <Link className="nav-link" to="/proofs/rejected">
                                         <span className="menu-title">Rejected Proofs</span>
                                     </Link>
@@ -91,17 +96,17 @@ const Adminsidebar = () => {
                         <div class="collapse" id="deposits">
                             <ul class="nav flex-column sub-menu">
                                 <li className={`nav-item ${location.pathname === "/make_money" ? "active" : ""}`}>
-                                    <Link className="nav-link" to="/make_money">
+                                    <Link className="nav-link" to="/deposit/pending">
                                         <span className="menu-title">Pending</span>
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${location.pathname === "/task/new" ? "active" : ""}`}>
-                                    <Link className="nav-link" to="/task/new">
+                                    <Link className="nav-link" to="/deposit/approved">
                                         <span className="menu-title">Approved</span>
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${location.pathname === "/history/performed" ? "active" : ""}`}>
-                                    <Link className="nav-link" to="/history/performed">
+                                    <Link className="nav-link" to="/deposit/rejected">
                                         <span className="menu-title">Cancelled</span>
                                     </Link>
                                 </li>

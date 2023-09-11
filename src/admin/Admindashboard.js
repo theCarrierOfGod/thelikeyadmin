@@ -17,23 +17,35 @@ const Admindashboard = () => {
     const location = useLocation();
     const walletHook = useWallet();
     const [ad, setAd] = useState()
+    const [active_users, setActiveUsers] = useState(0)
+    const [inactive_users, setInactiveUsers] = useState(0)
+    const [approved_fundings, setApprovedFundings] = useState(0)
+    const [pending_fundings, setPendingFundings] = useState(0)
+    const [pending_withdrawals, setPendingWithdrawals] = useState(0)
+    const [pending_proofs, setPendingProofs] = useState(0);
     const [users, setUsers] = useState(0);
     const [fundings, setFundings] = useState(0)
     const [withdrawals, setWithdrawals] = useState(0);
-    const [proofs, setProofs] = useState(0)
+    const [aproofs, setAProofs] = useState(0)
 
     const countUsers = async () => {
         try {
             const res = await axios.get(`${hook.endpoint}/admin/count/users`);
-            setUsers(res.data.users)
-            setWithdrawals(res.data.withdrawals)
-            setFundings(res.data.withdrawals)
-            setProofs(res.data.proofs)
+            setActiveUsers(res.data.active_users)
+            setInactiveUsers(res.data.inactive_users);
+            setPendingWithdrawals(res.data.pending_withdrawals)
+            setPendingFundings(res.data.pending_fundings)
+            setApprovedFundings(res.data.approved_fundings);
+            setPendingProofs(res.data.pending_proofs)
+            setAProofs(res.data.aproofs);
         } catch (error) {
-            setUsers(0);
-            setFundings(0)
-            setWithdrawals(0)
-            setProofs(0)
+            setActiveUsers(0);
+            setInactiveUsers(0)
+            setPendingFundings(0)
+            setApprovedFundings(0)
+            setPendingWithdrawals(0)
+            setPendingProofs(0)
+            setAProofs(0)
         }
     }
 
@@ -84,22 +96,46 @@ const Admindashboard = () => {
                                     <div className="card bg-primary card-img-holder text-white">
                                         <div className="card-body p-2">
                                             <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
-                                            <h4 className="font-weight-normal mb-3 text-right">Users
+                                            <h4 className="font-weight-normal mb-3 text-right">Active Users
                                             </h4>
                                             <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
-                                                {users}
+                                                {active_users}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-3 col-6  stretch-card grid-margin">
+                                    <div className="card bg-primary card-img-holder text-white">
+                                        <div className="card-body p-2">
+                                            <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
+                                            <h4 className="font-weight-normal mb-3 text-right">Inactive Users
+                                            </h4>
+                                            <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
+                                                {inactive_users}
                                             </h2>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-sm-3 col-6 stretch-card grid-margin">
-                                    <div className="card bg-danger card-img-holder text-white">
+                                    <div className="card bg-warning card-img-holder text-white">
                                         <div className="card-body p-2">
                                             <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
-                                            <h4 className="font-weight-normal mb-3 text-right">Fundings
+                                            <h4 className="font-weight-normal mb-3 text-right">Approved Fundings
                                             </h4>
                                             <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
-                                                {fundings}
+                                                {approved_fundings}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-3 col-6 stretch-card grid-margin">
+                                    <div className="card bg-warning card-img-holder text-white">
+                                        <div className="card-body p-2">
+                                            <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
+                                            <h4 className="font-weight-normal mb-3 text-right">Pending Fundings
+                                            </h4>
+                                            <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
+                                                {pending_fundings}
                                             </h2>
                                         </div>
                                     </div>
@@ -108,10 +144,22 @@ const Admindashboard = () => {
                                     <div className="card bg-info card-img-holder text-white">
                                         <div className="card-body p-2">
                                             <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
-                                            <h4 className="font-weight-normal mb-3 text-right">Withdrawals
+                                            <h4 className="font-weight-normal mb-3 text-right">Approved Withdrawals
                                             </h4>
                                             <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
-                                                {withdrawals}
+                                                {pending_withdrawals}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-3 col-6 stretch-card grid-margin">
+                                    <div className="card bg-warning card-img-holder text-white">
+                                        <div className="card-body p-2">
+                                            <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
+                                            <h4 className="font-weight-normal mb-3 text-right">Approved Proofs
+                                            </h4>
+                                            <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
+                                                {aproofs}
                                             </h2>
                                         </div>
                                     </div>
@@ -120,10 +168,22 @@ const Admindashboard = () => {
                                     <div className="card bg-info card-img-holder text-white">
                                         <div className="card-body p-2">
                                             <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
-                                            <h4 className="font-weight-normal mb-3 text-right">Proofs
+                                            <h4 className="font-weight-normal mb-3 text-right">Pending Withdrawals
                                             </h4>
                                             <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
-                                                {proofs}
+                                                {pending_withdrawals}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-3 col-6 stretch-card grid-margin">
+                                    <div className="card bg-info card-img-holder text-white">
+                                        <div className="card-body p-2">
+                                            <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
+                                            <h4 className="font-weight-normal mb-3 text-right">Pending Proofs
+                                            </h4>
+                                            <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
+                                                {pending_proofs}
                                             </h2>
                                         </div>
                                     </div>

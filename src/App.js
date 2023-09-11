@@ -19,6 +19,9 @@ import PendingProofs from './admin/Tasks/PendingProofs';
 import SignIn from './pages/signIn/SignIn';
 import AddCategories from './admin/AddCategories';
 import Categories from './admin/Categories';
+import All from './admin/Tasks/All';
+import PendingDeopsits from './admin/deposits/PendingDeopsits';
+import ApprovedDeopsits from './admin/deposits/ApprovedDeposits';
 
 
 function App() {
@@ -80,6 +83,18 @@ function App() {
 
                   <Route
                     exact
+                    path="/tasks"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <All />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+
+                  <Route
+                    exact
                     path="/proofs/approved"
                     element={
                       <Suspense fallback={<Preloader />}>
@@ -108,6 +123,28 @@ function App() {
                       <Suspense fallback={<Preloader />}>
                         <MustLogin>
                           <PendingProofs />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/deposit/pending"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <PendingDeopsits />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/deposit/approved"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <ApprovedDeopsits />
                         </MustLogin>
                       </Suspense>
                     }

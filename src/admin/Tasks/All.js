@@ -1,32 +1,38 @@
-import React, { useEffect } from 'react'
-import Adminheader from './Adminheader'
-import Footer from '../user/Footer'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import Adminsidebar from './Adminsidebar'
-import { useState } from 'react'
-import axios from 'axios'
-import { useHook } from '../contexts/Hook'
-import swal from 'sweetalert'
 import { Link, useLocation } from 'react-router-dom'
-import Cats from './Cats/Cats'
+import { useAuth } from '../../contexts/Auth'
+import { useHook } from '../../contexts/Hook'
+import { useUser } from '../../contexts/User'
+import { useWallet } from '../../contexts/Wallet'
+import Adminheader from '../Adminheader'
+import Adminsidebar from '../Adminsidebar'
+import Userpagination from '../Userpagination'
+import axios from 'axios'
+import swal from 'sweetalert'
+import Footer from '../../user/Footer'
+import TaskPagination from './TaskPagination'
 
-const Categories = () => {
+const All = () => {
+    const userHook = useUser();
     const hook = useHook();
+    const auth = useAuth();
     const location = useLocation();
-    const [adding, setAdding] = useState('');
-    const [type, setType] = useState('promotion');
-    const [categories, setCategories] = useState([]);
+    const walletHook = useWallet();
+    const [ad, setAd] = useState();
+
+    const [users, setUsers] = useState([]);
 
     const allUsers = async () => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/categories/${type}`);
+            const res = await axios.get(`${hook.endpoint}/admin/all_tasks`);
             if (res.data) {
-                setCategories(res.data);
+                setUsers(res.data);
             } else {
-                setCategories([])
+                setUsers([])
             }
         } catch (error) {
-            setCategories([])
+            setUsers([])
         }
     }
 
@@ -40,7 +46,7 @@ const Categories = () => {
         return () => {
             return true;
         }
-    }, [location.key, type])
+    }, [location.key])
 
     return (
         <>
@@ -59,7 +65,7 @@ const Categories = () => {
                                 <h3 className="page-title">
                                     <span className="page-title-icon bg-info text-white me-2">
                                         <i className="mdi mdi-home"></i>
-                                    </span> TASK N PROMOTION CATEGORIES
+                                    </span> ALL TASKS
                                 </h3>
                                 <nav aria-label="breadcrumb">
                                     <ul className="breadcrumb">
@@ -70,35 +76,15 @@ const Categories = () => {
                                 </nav>
                             </div>
 
-                            <div className="page-header">
-                                <h3 className="page-title">
-                                    <Link to="/new/categories" className='button is-link' style={{ textDecoration: 'none' }}>Add New</Link>
-                                </h3>
-                                <div className='page-title'>
-                                    <label htmlFor='type'>
-                                        Category Type
-                                    </label>
-                                    <select className='form-select' id='type' onChange={(e) => setType(e.target.value)} defaultChecked={type}>
-                                        <option value={'promotion'} selected={type === 'promotion'}>Promotion</option>
-                                        <option value={'task'} selected={type === 'task'}>Task</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-
                             <div className="row justify-content-center">
-
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
-                                            <section className=''>
-                                                {categories.length === 0 ? "" : (
-                                                    <>
-                                                        <Cats items={categories} perpage={3} />
-                                                    </>
-                                                )}
-                                            </section>
+                                            {users.length === 0 ? "" : (
+                                                <>
+                                                    <TaskPagination items={users} perpage={15} />
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -106,10 +92,11 @@ const Categories = () => {
                         </div>
                     </div>
                 </div>
+                {/* </div> */}
                 <Footer />
             </div>
         </>
     )
 }
 
-export default Categories
+export default All
