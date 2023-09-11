@@ -22,6 +22,7 @@ import Categories from './admin/Categories';
 import All from './admin/Tasks/All';
 import PendingDeopsits from './admin/deposits/PendingDeopsits';
 import ApprovedDeopsits from './admin/deposits/ApprovedDeposits';
+import RejectedDeopsits from './admin/deposits/RejectedDeposits';
 
 
 function App() {
@@ -145,6 +146,17 @@ function App() {
                       <Suspense fallback={<Preloader />}>
                         <MustLogin>
                           <ApprovedDeopsits />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/deposit/rejected"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <RejectedDeopsits />
                         </MustLogin>
                       </Suspense>
                     }

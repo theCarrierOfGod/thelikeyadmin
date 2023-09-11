@@ -13,11 +13,12 @@ import Cats from './Cats/Cats'
 const Categories = () => {
     const hook = useHook();
     const location = useLocation();
-    const [adding, setAdding] = useState('');
+    const [adding, setAdding] = useState(true);
     const [type, setType] = useState('promotion');
     const [categories, setCategories] = useState([]);
 
     const allUsers = async () => {
+        setAdding(true)
         try {
             const res = await axios.get(`${hook.endpoint}/admin/categories/${type}`);
             if (res.data) {
@@ -25,8 +26,10 @@ const Categories = () => {
             } else {
                 setCategories([])
             }
+            setAdding(false)
         } catch (error) {
             setCategories([])
+            setAdding(false)
         }
     }
 
@@ -93,11 +96,24 @@ const Categories = () => {
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
                                             <section className=''>
-                                                {categories.length === 0 ? "" : (
+                                                {categories.length === 0 ? (
+                                                    <>
+                                                        <div className='notification is-info is-light text-center subtitle'>
+                                                            No data
+                                                        </div>
+                                                    </>
+                                                ) : (
                                                     <>
                                                         <Cats items={categories} perpage={3} />
                                                     </>
                                                 )}
+                                                {adding ? (
+                                                    <>
+                                                        <div className='notification is-info is-light text-center'>
+                                                            <i className='fa fa-spinner fa-spin'></i>
+                                                        </div>
+                                                    </>
+                                                ) : null}
                                             </section>
                                         </div>
                                     </div>

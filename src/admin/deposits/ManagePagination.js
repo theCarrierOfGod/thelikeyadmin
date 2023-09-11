@@ -107,65 +107,70 @@ const ManagePagination = ({ items, perpage, type }) => {
 
             <div>
                 <div className={total !== 0 ? "d-none" : "col-lg-12 mt-4 text-center"}>
-                    <div className="alert alert-info">
+                    <div className="notification is-info is-light">
                         No data
                     </div>
                 </div>
             </div>
-            <div className="table-responsive">
-                <table className='table table-stripped'>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>TransactionID</th>
-                            <th>Wallet To</th>
-                            <th>Credits</th>
-                            <th>User</th>
-                            <th>Amount (USD)</th>
-                            <th>Amount (CRYPTO)</th>
-                            <th>Currency</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>#</th>
-                            <th>TransactionID</th>
-                            <th>Wallet To</th>
-                            <th>Credits</th>
-                            <th>User</th>
-                            <th>Amount (USD)</th>
-                            <th>Amount (CRYPTO)</th>
-                            <th>Currency</th>
-                            <th>Status</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        {currentItems.map((user, index) => (
-                            <>
+
+            {total === 0 ? null : (
+                <>
+                    <div className="table-responsive">
+                        <table className='table table-stripped'>
+                            <thead>
                                 <tr>
-                                    <th>{index + 1}</th>
-                                    <td>
-                                        <strong>
-                                            {user.transaction_id}
-                                        </strong>
-                                    </td>
-                                    <td>{user.wallet_to}</td>
-                                    <td>{user.credits}</td>
-                                    <td>
-                                        {user.username}
-                                    </td>
-                                    <td>{user.amount_usd}</td>
-                                    <td>{user.amount_crypto}</td>
-                                    <td>{user.currency}</td>
-                                    <td>{user.status}</td>
+                                    <th>#</th>
+                                    <th>TransactionID</th>
+                                    <th>Wallet To</th>
+                                    <th>Credits</th>
+                                    <th>User</th>
+                                    <th>Amount (USD)</th>
+                                    <th>Amount (CRYPTO)</th>
+                                    <th>Currency</th>
+                                    <th>Status</th>
                                 </tr>
-                            </>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>TransactionID</th>
+                                    <th>Wallet To</th>
+                                    <th>Credits</th>
+                                    <th>User</th>
+                                    <th>Amount (USD)</th>
+                                    <th>Amount (CRYPTO)</th>
+                                    <th>Currency</th>
+                                    <th>Status</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                {currentItems.map((user, index) => (
+                                    <>
+                                        <tr>
+                                            <th>{index + 1}</th>
+                                            <td>
+                                                <strong>
+                                                    {user.transaction_id}
+                                                </strong>
+                                            </td>
+                                            <td>{user.wallet_to}</td>
+                                            <td>{user.credits}</td>
+                                            <td>
+                                                {user.username}
+                                            </td>
+                                            <td>{user.amount_usd}</td>
+                                            <td>{user.amount_crypto}</td>
+                                            <td>{user.currency}</td>
+                                            <td>{user.status}</td>
+                                        </tr>
+                                    </>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </>
+            )}
+
             <div className={total === 0 ? "d-none" : "col-lg-12 mt-4 text-right"}>
                 <button onClick={() => handlePrevious()} className={currentPage === 1 ? 'd-none' : 'prevButton btn-info mr-3'} title={'Previous Page'} ></button>
                 <button onClick={() => handleNext()} className={currentPage === pageCount ? 'd-none' : 'nextButton btn-info'} title={'Next Page'}></button>

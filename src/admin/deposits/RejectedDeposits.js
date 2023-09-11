@@ -1,46 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet'
-import { Link, useLocation } from 'react-router-dom'
-import { useAuth } from '../../contexts/Auth'
-import { useHook } from '../../contexts/Hook'
-import { useUser } from '../../contexts/User'
-import { useWallet } from '../../contexts/Wallet'
 import Adminheader from '../Adminheader'
 import Adminsidebar from '../Adminsidebar'
-import Userpagination from '../Userpagination'
-import axios from 'axios'
-import swal from 'sweetalert'
 import Footer from '../../user/Footer'
-import TaskPagination from './TaskPagination'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useHook } from '../../contexts/Hook'
+import { useEffect } from 'react'
+import axios from 'axios'
+import ManagePagination from './ManagePagination'
 
-const All = () => {
-    const userHook = useUser();
+
+
+const RejectedDeopsits = () => {
     const hook = useHook();
-    const auth = useAuth();
     const location = useLocation();
-    const walletHook = useWallet();
-    const [ad, setAd] = useState(true);
 
-    const [users, setUsers] = useState([]);
+    const [proofs, setProofs] = useState([]);
 
-    const allUsers = async () => {
-        setAd(false)
+    const RejectedDeopsits = async () => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/all_tasks`);
-            if (res.data) {
-                setUsers(res.data);
-            } else {
-                setUsers([])
-            }
-            setAd(false)
+            const res = await axios.get(`${hook.endpoint}/admin/deposits/rejected`);
+            setProofs(res.data)
         } catch (error) {
-            setUsers([])
-            setAd(false)
+            setProofs([]);
         }
     }
 
     const getNow = () => {
-        allUsers();
+        RejectedDeopsits();
     }
 
     useEffect(() => {
@@ -52,10 +40,10 @@ const All = () => {
     }, [location.key])
 
     return (
-        <>
+        <div>
             <Helmet>
                 <title>
-                    Administrator | The LIKEY
+                    Rejected Deposits | Administrator | The LIKEY
                 </title>
             </Helmet>
             <div className='container-scroller'>
@@ -68,7 +56,7 @@ const All = () => {
                                 <h3 className="page-title">
                                     <span className="page-title-icon bg-info text-white me-2">
                                         <i className="mdi mdi-home"></i>
-                                    </span> ALL TASKS
+                                    </span> REJECTED DEPOSITS
                                 </h3>
                                 <nav aria-label="breadcrumb">
                                     <ul className="breadcrumb">
@@ -83,24 +71,7 @@ const All = () => {
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
-                                            {users.length === 0 ? (
-                                                <>
-                                                    <div className='notification is-info is-light text-center subtitle'>
-                                                        No data
-                                                    </div>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <TaskPagination items={users} perpage={15} />
-                                                </>
-                                            )}
-                                            {ad ? (
-                                                <>
-                                                    <div className='notification is-info is-light text-center'>
-                                                        <i className='fa fa-spinner fa-spin'></i>
-                                                    </div>
-                                                </>
-                                            ) : null}
+                                            <ManagePagination items={proofs} perpage={12} type={'pending'} />
                                         </div>
                                     </div>
                                 </div>
@@ -111,8 +82,8 @@ const All = () => {
                 {/* </div> */}
                 <Footer />
             </div>
-        </>
+        </div>
     )
 }
 
-export default All
+export default RejectedDeopsits

@@ -70,7 +70,7 @@ const PendingDeopsits = () => {
                             <div className="row justify-content-center">
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
-                                        <div className="card-body p-2 table-responsive row">
+                                        <div className="card-body p-2">
                                             <ManagePagination items={proofs} perpage={12} type={'pending'} />
                                         </div>
                                     </div>
