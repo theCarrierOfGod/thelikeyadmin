@@ -59,7 +59,7 @@ const SignIn = () => {
 
     const signIn = async (data) => {
         try {
-            const res = await axios.post(`${hook.endpoint}/sign/in`, data, {
+            const res = await axios.post(`${hook.endpoint}/admin/sign/in`, data, {
                 headers: {
                     'content-type': 'application/json',
                     'X-CSRF-TOKEN': hook.token
@@ -156,10 +156,6 @@ const SignIn = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    <p className='text-center mt-3' >
-                                        <br />
-                                        Don't have an account? <Link to={'/sign-up'}>Sign Up</Link>
-                                    </p>
                                 </form>
                             </div>
                         </div>

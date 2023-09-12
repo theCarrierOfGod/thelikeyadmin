@@ -3,9 +3,10 @@ import { useAuth } from './Auth';
 
 export const MustBeOut = ({ children }) => {
     const auth = useAuth();
+    const location = useLocation();
 
-    if (auth.isLoggedIn) {
-        return <Navigate to={`/dashboard`} />;
+    if (window.localStorage.getItem('username')) {
+        return <Navigate to={`/`} />;
     }
     return children
 }

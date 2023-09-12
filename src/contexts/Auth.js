@@ -71,7 +71,7 @@ export const Auth = ({ children }) => {
     }
 
     const sessionExpired = () => {
-        if (isLoggedIn) {
+        if (window.localStorage.getItem('username')) {
             // var OneDay = new Date().getTime() + (1 * 24 * 60 * 60 * 1000);
             var OneDay = window.localStorage.getItem('timestamp');
             let yourDate = Date.now();
@@ -91,7 +91,8 @@ export const Auth = ({ children }) => {
     const logOut = () => {
         window.localStorage.clear();
         setIsLoggedIn(false);
-        setUserOnline('')
+        setUserOnline('');
+        navigate(`/sign-in?ref=${location.pathname}`)
     }
 
     setTimeout(() => {
@@ -101,7 +102,6 @@ export const Auth = ({ children }) => {
     }, 300);
 
     useEffect(() => {
-        // window.localStorage.setItem('username', 'olaolumide')
         checkIfLoggedIn();
 
         return () => {
