@@ -25,7 +25,8 @@ export const User = ({ children }) => {
     const [activities, setActivities] = useState([]);
     const [promotionCount, setPromotionCount] = useState(0);
     const [performedCount, setPerformedCount] = useState(0);
-    const [admin, setAdmin] = useState(false)
+    const [admin, setAdmin] = useState(false);
+    const [userS, setUserS] = useState('0000');
 
     const [processedBalance, setProcessedBalance] = useState(0);
     const [earnedBalance, setEarnedBalance] = useState(0);
@@ -294,8 +295,8 @@ export const User = ({ children }) => {
 
     return (
         <UserContext.Provider value={{
-            userImage, userName, userEmail, firstname, lastname, userDetails, admin, facebook, twitter, instagram, phoneNumber, homeActs, taskCount, promotionCount, processedBalance, earnedBalance, depositedBalance, activities, performedCount, tiktok,
-            getUserDetails, getActivities, getHomeActivities, countPromotions, countTasks, updatePicture, updateSocial, countPerformed, updatePersonal, setUserDetails,
+            userImage, userName, userEmail, firstname, lastname, userS, userDetails, admin, facebook, twitter, instagram, phoneNumber, homeActs, taskCount, promotionCount, processedBalance, earnedBalance, depositedBalance, activities, performedCount, tiktok,
+            getUserDetails, getActivities, getHomeActivities, countPromotions, countTasks, updatePicture, updateSocial, countPerformed, updatePersonal, setUserDetails, setUserS,
         }}>
             {children}
         </UserContext.Provider>

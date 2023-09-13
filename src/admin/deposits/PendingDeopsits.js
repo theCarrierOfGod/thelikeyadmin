@@ -20,7 +20,7 @@ const PendingDeopsits = () => {
 
     const PendingDeopsits = async () => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/deposits/pending`);
+            const res = await axios.get(`${hook.endpoint}/admin/deposits/processing`);
             setProofs(res.data)
         } catch (error) {
             setProofs([]);

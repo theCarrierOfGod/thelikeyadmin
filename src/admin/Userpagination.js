@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
 import './pagination.css'
-import swal from 'sweetalert';
 import axios from 'axios';
 import { useHook } from '../contexts/Hook';
+import { useUser } from '../contexts/User';
 
 const Userpagination = ({ items, perpage }) => {
     const hook = useHook();
+    const userHook = useUser();
     const itemPerPage = perpage;
     const total = items.length;
     const pageCount = Math.ceil(total / itemPerPage);
@@ -51,7 +51,7 @@ const Userpagination = ({ items, perpage }) => {
                 const res = await axios.get(`${hook.endpoint}/admin/activate_account/${username}`);
                 if (res.data.success) {
                     alert(res.data.success)
-                    window.location.reload();
+                    userHook.setUserS(1223)
                 } else {
                     alert(res.data.error)
                 }
@@ -68,7 +68,8 @@ const Userpagination = ({ items, perpage }) => {
             try {
                 const res = await axios.get(`${hook.endpoint}/admin/suspend_account/${username}`);
                 if (res.data.success) {
-                    alert(res.data.success)
+                    alert(res.data.success);
+                    userHook.setUserS(1243);
                 } else {
                     alert(res.data.error)
                 }
@@ -85,7 +86,8 @@ const Userpagination = ({ items, perpage }) => {
             try {
                 const res = await axios.get(`${hook.endpoint}/admin/reactivate_account/${username}`);
                 if (res.data.success) {
-                    alert(res.data.success)
+                    alert(res.data.success);
+                    userHook.setUserS(2335)
                 } else {
                     alert(res.data.error)
                 }
@@ -104,6 +106,17 @@ const Userpagination = ({ items, perpage }) => {
                         No data
                     </div>
                 </div>
+            </div>
+            <div className={total === 0 ? "d-none" : "col-lg-12 mt-4 grid-margin"} style={{ color: 'black', fontFamily: 'monospace', textAlign: 'right'}}>
+                {total} result(s)
+            </div>
+            <div className={total === 0 ? "d-none" : "col-lg-12 mt-4 text-right"} style={{ textAlign: 'right' }}>
+                <span onClick={() => handlePrevious()} className={currentPage === 1 ? 'd-none' : 'button btn-info mr-3 p-1'} title={'Previous Page'} >Previous page</span>
+                <span onClick={() => handleNext()} className={currentPage === pageCount ? 'd-none' : 'button btn-info p-1'} title={'Next Page'}>Next page</span>
+                <br />
+                <span style={{ color: 'black' }}>
+                    {currentPage} of {pageCount} page(s)
+                </span>
             </div>
             <div className="table-responsive">
                 <table className='table table-stripped'>
@@ -133,7 +146,7 @@ const Userpagination = ({ items, perpage }) => {
                             <th>Status</th>
                         </tr>
                     </tfoot>
-                    <tbody>
+                    <tbody style={{ fontFamily: 'monospace'}}>
                         {currentItems.map((user, index) => (
                             <>
                                 <tr>
@@ -150,7 +163,7 @@ const Userpagination = ({ items, perpage }) => {
                                     </td>
                                     <td>{user.earned}</td>
                                     <td>{user.deposited}</td>
-                                    <td>{user.referee !== "" ? user.referee : 'admin' }</td>
+                                    <td>{user.referee !== "" ? user.referee : 'admin'}</td>
                                     <td>
                                         <button className={user.verified === '0' ? 'button is-link is-light' : 'd-none'} onClick={() => { activateAccount(user.username) }}>
                                             Activate

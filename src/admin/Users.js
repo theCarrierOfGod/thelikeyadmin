@@ -18,24 +18,27 @@ const Users = () => {
     const auth = useAuth();
     const location = useLocation();
     const walletHook = useWallet();
-    const [ad, setAd] = useState();
+    const [username, setUsername] = useState('');
+    const [ad, setAd] = useState(false);
 
     const [users, setUsers] = useState([]);
 
     const allUsers = async () => {
+        setAd(true);
+        setUsers([])
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/users`);
+            const res = await axios.get(`${hook.endpoint}/admin/users?username=${username}`);
             if (res.data.users) {
                 setUsers(res.data.users);
             } else {
                 setUsers([])
             }
+            setAd(false)
         } catch (error) {
-            setUsers([])
+            setUsers([]);
+            setAd(false)
         }
     }
-
-    
 
     const getNow = () => {
         allUsers();
@@ -47,7 +50,15 @@ const Users = () => {
         return () => {
             return true;
         }
-    }, [location.key])
+    }, [location.key, useHook.userS])
+
+    useEffect(() => {
+        getNow();
+
+        return () => {
+            return true;
+        }
+    }, [useHook.userS])
 
 
     return (
@@ -79,10 +90,30 @@ const Users = () => {
                             </div>
 
                             <div className="row justify-content-center">
+                                <div className='col-md-12 strech-card grid-margin'>
+                                    <input type='text' placeholder='Username/Email' className='form-control' value={username} onChange={(e) => setUsername(e.target.value)} />
+                                    <button className='button is-link is-light' onClick={(e) => {
+                                        if (username === "") {
+                                            return false;
+                                        } else {
+                                            getNow();
+                                        }
+                                    }}>
+                                        Search
+                                    </button> &nbsp;&nbsp;&nbsp;
+                                    <button className='button is-link is-light' onClick={(e) => {
+                                        setUsername('');
+                                        setTimeout(() => {
+                                            getNow();
+                                        }, 100);
+                                    }}>
+                                        Clear Filter
+                                    </button>
+                                </div>
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
-                                            {users.length === 0 ? "" : (
+                                            {users.length === 0 ? null : (
                                                 <>
                                                     <Userpagination items={users} perpage={10} />
                                                 </>
