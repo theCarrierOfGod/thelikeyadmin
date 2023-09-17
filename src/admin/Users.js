@@ -115,7 +115,7 @@ const Users = () => {
                                         <div className="card-body p-2">
                                             {users.length === 0 ? null : (
                                                 <>
-                                                    <Userpagination items={users} perpage={10} />
+                                                    <Userpagination items={users} perpage={15} />
                                                 </>
                                             )}
                                         </div>
