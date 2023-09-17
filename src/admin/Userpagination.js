@@ -123,7 +123,7 @@ const Userpagination = ({ items, perpage }) => {
                     <thead>
                         <tr>
                             <th><abbr title="Serial Number">#</abbr></th>
-                            <th></th>
+                            <th>DP</th>
                             <th>Username</th>
                             <th><abbr title="Email address">Email</abbr></th>
                             <th><abbr title="Phone number">Phone</abbr></th>
@@ -137,7 +137,7 @@ const Userpagination = ({ items, perpage }) => {
                     <tfoot>
                         <tr>
                             <th><abbr title="Serial Number">#</abbr></th>
-                            <th></th>
+                            <th>DP</th>
                             <th>Username</th>
                             <th><abbr title="Email address">Email</abbr></th>
                             <th><abbr title="Phone number">Phone</abbr></th>
