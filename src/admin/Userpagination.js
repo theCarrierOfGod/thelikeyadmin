@@ -152,6 +152,7 @@ const Userpagination = ({ items, perpage }) => {
                                 <tr>
                                     <th>{index + 1}</th>
                                     <td>
+                                        <img src={user.display_picture} width={75} height={75} alt="user" />
                                         <strong>
                                             {user.username}
                                         </strong>
