@@ -123,6 +123,7 @@ const Userpagination = ({ items, perpage }) => {
                     <thead>
                         <tr>
                             <th><abbr title="Serial Number">#</abbr></th>
+                            <th></th>
                             <th>Username</th>
                             <th><abbr title="Email address">Email</abbr></th>
                             <th><abbr title="Phone number">Phone</abbr></th>
@@ -136,6 +137,7 @@ const Userpagination = ({ items, perpage }) => {
                     <tfoot>
                         <tr>
                             <th><abbr title="Serial Number">#</abbr></th>
+                            <th></th>
                             <th>Username</th>
                             <th><abbr title="Email address">Email</abbr></th>
                             <th><abbr title="Phone number">Phone</abbr></th>
@@ -153,6 +155,8 @@ const Userpagination = ({ items, perpage }) => {
                                     <th>{index + 1}</th>
                                     <td>
                                         <img src={user.display_picture} width={75} height={75} alt="user" />
+                                    </td>
+                                    <td>
                                         <strong>
                                             {user.username}
                                         </strong>
