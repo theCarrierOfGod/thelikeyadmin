@@ -30,14 +30,14 @@ const ManagePagination = ({ items, perpage, type }) => {
         }
     }
 
-    const approveProof = async (transaction_id) => {
+    const approveDeposit = async (transaction_id) => {
         try {
             const res = await axios.get(`${hook.endpoint}/admin/fund/${transaction_id}/approved`);
             console.log(res.data);
             if (res.data.success) {
                 swal({
-                    title: 'Approve Proof',
-                    text: 'Proof approved',
+                    title: 'Approve Deposit',
+                    text: 'Deposit approved',
                     icon: 'success',
                     timer: 2000
                 })
@@ -47,27 +47,27 @@ const ManagePagination = ({ items, perpage, type }) => {
 
             } else {
                 swal({
-                    title: 'Approve Proof',
+                    title: 'Approve Deposit',
                     text: res.data.error,
                     icon: 'error',
                 })
             }
         } catch (error) {
             swal({
-                title: 'Approve Proof',
+                title: 'Approve Deposit',
                 text: error.message,
                 icon: 'error',
             })
         }
     }
 
-    const rejectProof = async (transaction_id) => {
+    const rejectDeposit = async (transaction_id) => {
         try {
             const res = await axios.get(`${hook.endpoint}/admin/fund/${transaction_id}/rejected`);
             if (res.data.success) {
                 swal({
-                    title: 'Reject Proof',
-                    text: 'Proof rejected!',
+                    title: 'Reject Deposit',
+                    text: 'Deposit rejected!',
                     icon: 'success',
                 })
                     .then((res) => {
@@ -75,14 +75,14 @@ const ManagePagination = ({ items, perpage, type }) => {
                     })
             } else {
                 swal({
-                    title: 'Reject Proof',
+                    title: 'Reject Deposit',
                     text: res.data.error,
                     icon: 'error',
                 })
             }
         } catch (error) {
             swal({
-                title: 'Reject Proof',
+                title: 'Reject Deposit',
                 text: error.message,
                 icon: 'error',
 
@@ -172,7 +172,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                                     })
                                                                         .then((res) => {
                                                                             if (res) {
-                                                                                approveProof(user.transaction_id)
+                                                                                approveDeposit(user.transaction_id)
                                                                             } else {
                                                                                 swal({
                                                                                     title: 'Approve Deposit',
@@ -198,7 +198,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                                     })
                                                                         .then((res) => {
                                                                             if (res) {
-                                                                                rejectProof(user.transaction_id)
+                                                                                rejectDeposit(user.transaction_id)
                                                                             } else {
                                                                                 swal({
                                                                                     title: 'Reject Deposit',
