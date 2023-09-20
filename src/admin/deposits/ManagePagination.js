@@ -30,9 +30,9 @@ const ManagePagination = ({ items, perpage, type }) => {
         }
     }
 
-    const approveProof = async (proofID) => {
+    const approveProof = async (transaction_id) => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/deposit/${proofID}/approved`);
+            const res = await axios.get(`${hook.endpoint}/admin/fund/${transaction_id}/approved`);
             console.log(res.data);
             if (res.data.success) {
                 swal({
@@ -61,13 +61,9 @@ const ManagePagination = ({ items, perpage, type }) => {
         }
     }
 
-    const rejectProof = async (proofID, reason) => {
+    const rejectProof = async (transaction_id) => {
         try {
-            let data = {
-                proofID: proofID,
-                reason: reason,
-            }
-            const res = await axios.post(`${hook.endpoint}/admin/deposit/reject`, data);
+            const res = await axios.get(`${hook.endpoint}/admin/fund/${transaction_id}/rejected`);
             if (res.data.success) {
                 swal({
                     title: 'Reject Proof',
@@ -169,7 +165,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                                 className='button is-success'
                                                                 onClick={() => {
                                                                     swal({
-                                                                        title: 'Approve Proof',
+                                                                        title: 'Approve Deposit',
                                                                         text: 'Do you really want to proceed?',
                                                                         icon: 'warning',
                                                                         buttons: ["Stop", "Yes, Proceed!"],
@@ -179,7 +175,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                                                 approveProof(user.transaction_id)
                                                                             } else {
                                                                                 swal({
-                                                                                    title: 'Approve Proof',
+                                                                                    title: 'Approve Deposit',
                                                                                     text: 'Cancelled by user',
                                                                                     icon: 'error',
                                                                                     timer: 2000
@@ -195,30 +191,20 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                                 className='button is-warning'
                                                                 onClick={() => {
                                                                     swal({
-                                                                        title: "Reason for rejection",
+                                                                        title: 'Reject Deposit',
+                                                                        text: 'Do you really want to cancel it?',
                                                                         icon: 'warning',
-                                                                        content: {
-                                                                            element: "input",
-                                                                            attributes: {
-                                                                                placeholder: "Specify reason for rejection",
-                                                                                type: "text",
-                                                                            },
-                                                                            showCancelButton: true,
-                                                                            closeOnConfirm: false,
-                                                                            animation: "slide-from-top",
-                                                                        },
+                                                                        buttons: ["Stop", "Yes, Cancel!"],
                                                                     })
-                                                                        .then((value) => {
-                                                                            if (value.length === 0) {
-                                                                                swal({
-                                                                                    text: 'Process Teminated',
-                                                                                    icon: 'error'
-                                                                                })
+                                                                        .then((res) => {
+                                                                            if (res) {
+                                                                                rejectProof(user.transaction_id)
                                                                             } else {
-                                                                                rejectProof(user.transaction_id, value)
                                                                                 swal({
-                                                                                    text: value,
-                                                                                    icon: "success",
+                                                                                    title: 'Reject Deposit',
+                                                                                    text: 'Cancelled by user',
+                                                                                    icon: 'error',
+                                                                                    timer: 2000
                                                                                 })
                                                                             }
                                                                         })
