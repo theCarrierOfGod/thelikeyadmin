@@ -7,11 +7,9 @@ import { useUser } from '../../contexts/User'
 import { useWallet } from '../../contexts/Wallet'
 import Adminheader from '../Adminheader'
 import Adminsidebar from '../Adminsidebar'
-import Userpagination from '../Userpagination'
 import axios from 'axios'
-import swal from 'sweetalert'
 import Footer from '../../user/Footer'
-import TaskPagination from './TaskPagination'
+import PromoPagination from './PromoPagination'
 
 const AllPromotions = () => {
     const userHook = useUser();
@@ -91,7 +89,7 @@ const AllPromotions = () => {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <TaskPagination items={users} perpage={15} />
+                                                    <PromoPagination items={users} perpage={15} />
                                                 </>
                                             )}
                                             {ad ? (
