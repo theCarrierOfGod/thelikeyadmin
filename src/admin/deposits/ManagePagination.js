@@ -164,7 +164,6 @@ const ManagePagination = ({ items, perpage, type }) => {
                                             <td>
                                                 {user.status === "processing" ? (
                                                     <>
-                                                        <hr />
                                                         <div className='d-flex justify-content-center p-3'>
                                                             <button
                                                                 className='button is-success'
@@ -191,7 +190,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                             >
                                                                 Approve
                                                             </button>
-                                                            <span style={{ width: '30px', height: '30px' }}></span>
+                                                            <span style={{ width: '10px', height: '10px' }}></span>
                                                             <button
                                                                 className='button is-warning'
                                                                 onClick={() => {
