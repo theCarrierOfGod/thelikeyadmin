@@ -197,7 +197,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                     </>
                                 ) : null}
                             </div>
-                            <p>
+                            <p className='p-2'>
                                 <strong>More Details: </strong> {proof.details}
                             </p>
                             {JSON.parse(proof.proofURL).map((image) => (
