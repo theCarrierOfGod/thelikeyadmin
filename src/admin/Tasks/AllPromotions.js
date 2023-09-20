@@ -89,7 +89,7 @@ const AllPromotions = () => {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <PromoPagination items={users} perpage={15} />
+                                                    <PromoPagination items={users} perpage={25} />
                                                 </>
                                             )}
                                             {ad ? (
