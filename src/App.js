@@ -23,6 +23,7 @@ import All from './admin/Tasks/All';
 import PendingDeopsits from './admin/deposits/PendingDeopsits';
 import ApprovedDeopsits from './admin/deposits/ApprovedDeposits';
 import RejectedDeopsits from './admin/deposits/RejectedDeposits';
+import AllPromotions from './admin/Tasks/AllPromotions';
 
 
 function App() {
@@ -89,6 +90,18 @@ function App() {
                       <Suspense fallback={<Preloader />}>
                         <MustLogin>
                           <All />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+
+                  <Route
+                    exact
+                    path="/promotions"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <AllPromotions />
                         </MustLogin>
                       </Suspense>
                     }

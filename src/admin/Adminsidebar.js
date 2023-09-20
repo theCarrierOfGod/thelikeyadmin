@@ -82,6 +82,11 @@ const Adminsidebar = () => {
                                         <span className="menu-title">Approved Proofs</span>
                                     </Link>
                                 </li>
+                                <li className={`nav-item ${location.pathname === "/promotions" ? "active" : ""}`}>
+                                    <Link className="nav-link" to="/promotions">
+                                        <span className="menu-title">All Promotions</span>
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </li>
