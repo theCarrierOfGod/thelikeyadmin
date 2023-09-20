@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import parse from 'html-react-parser';
-import { Link } from 'react-router-dom';
 import './pagination.css'
 import swal from 'sweetalert';
 import axios from 'axios';
@@ -31,8 +29,6 @@ const ManagePagination = ({ items, perpage, type }) => {
             setEndOffset(endOffset - itemPerPage)
         }
     }
-
-
 
     const approveProof = async (proofID) => {
         try {
@@ -181,7 +177,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                                     })
                                                                         .then((res) => {
                                                                             if (res) {
-                                                                                approveProof(proof.proofID)
+                                                                                approveProof(user.transaction_id)
                                                                             } else {
                                                                                 swal({
                                                                                     title: 'Approve Proof',
@@ -220,7 +216,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                                                     icon: 'error'
                                                                                 })
                                                                             } else {
-                                                                                rejectProof(proof.proofID, value)
+                                                                                rejectProof(user.transaction_id, value)
                                                                                 swal({
                                                                                     text: value,
                                                                                     icon: "success",
