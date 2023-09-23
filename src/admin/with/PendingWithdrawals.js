@@ -20,7 +20,7 @@ const PendingWiths = () => {
 
     const PendingWiths = async () => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/withdrawal/processing`);
+            const res = await axios.get(`${hook.endpoint}/admin/withdrawals/processing`);
             setProofs(res.data)
         } catch (error) {
             setProofs([]);
