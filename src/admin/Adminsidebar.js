@@ -127,9 +127,9 @@ const Adminsidebar = () => {
                         </a>
                         <div class="collapse" id="with">
                             <ul class="nav flex-column sub-menu">
-                                <li className={`nav-item ${location.pathname === "/make_money" ? "active" : ""}`}>
-                                    <Link className="nav-link" to="/make_money">
-                                        <span className="menu-title">Pending</span>
+                                <li className={`nav-item ${location.pathname === "/withdrawal/processing" ? "active" : ""}`}>
+                                    <Link className="nav-link" to="/withdrawal/processing">
+                                        <span className="menu-title">Processing</span>
                                     </Link>
                                 </li>
                                 <li className={`nav-item ${location.pathname === "/task/new" ? "active" : ""}`}>

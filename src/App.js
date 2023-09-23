@@ -24,6 +24,7 @@ import PendingDeopsits from './admin/deposits/PendingDeopsits';
 import ApprovedDeopsits from './admin/deposits/ApprovedDeposits';
 import RejectedDeopsits from './admin/deposits/RejectedDeposits';
 import AllPromotions from './admin/Tasks/AllPromotions';
+import PendingWiths from './admin/with/PendingWithdrawals';
 
 
 function App() {
@@ -170,6 +171,17 @@ function App() {
                       <Suspense fallback={<Preloader />}>
                         <MustLogin>
                           <RejectedDeopsits />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/withdrawal/processing"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <PendingWiths />
                         </MustLogin>
                       </Suspense>
                     }
