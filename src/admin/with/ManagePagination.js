@@ -116,8 +116,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                     <th>Wallet To</th>
                                     <th>Credits</th>
                                     <th>User</th>
-                                    <th>Amount (USD)</th>
-                                    <th>Amount (CRYPTO)</th>
+                                    <th>Amount (USDT)</th>
                                     <th>Currency</th>
                                     <th>Status</th>
                                 </tr>
@@ -129,8 +128,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                     <th>Wallet To</th>
                                     <th>Credits</th>
                                     <th>User</th>
-                                    <th>Amount (USD)</th>
-                                    <th>Amount (CRYPTO)</th>
+                                    <th>Amount (USDT)</th>
                                     <th>Currency</th>
                                     <th>Status</th>
                                     <th>
@@ -153,8 +151,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                             <td>
                                                 {user.username}
                                             </td>
-                                            <td>{user.amount_usd}</td>
-                                            <td>{user.amount_crypto}</td>
+                                            <td>{user.amount}</td>
                                             <td>{user.currency}</td>
                                             <td>{user.status}</td>
                                             <td>
