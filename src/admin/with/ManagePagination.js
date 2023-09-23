@@ -32,7 +32,7 @@ const ManagePagination = ({ items, perpage, type }) => {
 
     const approveDeposit = async (transaction_id) => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/fund/${transaction_id}/approved`);
+            const res = await axios.get(`${hook.endpoint}/admin/with/${transaction_id}/approved`);
             console.log(res.data);
             if (res.data.success) {
                 swal({
@@ -63,7 +63,7 @@ const ManagePagination = ({ items, perpage, type }) => {
 
     const rejectDeposit = async (transaction_id) => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/fund/${transaction_id}/rejected`);
+            const res = await axios.get(`${hook.endpoint}/admin/with/${transaction_id}/rejected`);
             if (res.data.success) {
                 swal({
                     title: 'Reject Deposit',
