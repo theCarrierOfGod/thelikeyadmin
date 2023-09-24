@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../pagination.css'
 import axios from 'axios';
 import { useHook } from '../../contexts/Hook';
+import { Link } from 'react-router-dom';
 
 const PromoPagination = ({ items, perpage }) => {
     const hook = useHook();
@@ -88,7 +89,9 @@ const PromoPagination = ({ items, perpage }) => {
                                     </td>
                                     <td>{user.cpu}</td>
                                     <td>{user.total_cost}</td>
-                                    <td>{user.link}</td>
+                                    <td>
+                                        <Link to={user.link}>{user.link}</Link>
+                                    </td>
                                 </tr>
                             </>
                         ))}
