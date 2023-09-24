@@ -52,6 +52,7 @@ const PromoPagination = ({ items, perpage }) => {
                             <th>Location</th>
                             <th>CPU</th>
                             <th>Total Cost</th>
+                            <th>Link</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -65,6 +66,7 @@ const PromoPagination = ({ items, perpage }) => {
                             <th>Location</th>
                             <th>CPU</th>
                             <th>Total Cost</th>
+                            <th>Link</th>
                         </tr>
                     </tfoot>
                     <tbody style={{ fontFamily: 'monospace', textTransform: 'capitalize' }}>
@@ -86,6 +88,7 @@ const PromoPagination = ({ items, perpage }) => {
                                     </td>
                                     <td>{user.cpu}</td>
                                     <td>{user.total_cost}</td>
+                                    <td>{user.link}</td>
                                 </tr>
                             </>
                         ))}

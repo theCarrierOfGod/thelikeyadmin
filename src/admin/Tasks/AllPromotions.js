@@ -66,7 +66,7 @@ const AllPromotions = () => {
                                 <h3 className="page-title">
                                     <span className="page-title-icon bg-info text-white me-2">
                                         <i className="mdi mdi-home"></i>
-                                    </span> ALL TASKS
+                                    </span> ALL PROMOTIONS
                                 </h3>
                                 <nav aria-label="breadcrumb">
                                     <ul className="breadcrumb">
