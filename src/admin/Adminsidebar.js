@@ -132,13 +132,13 @@ const Adminsidebar = () => {
                                         <span className="menu-title">Processing</span>
                                     </Link>
                                 </li>
-                                <li className={`nav-item ${location.pathname === "/task/new" ? "active" : ""}`}>
-                                    <Link className="nav-link" to="/task/new">
+                                <li className={`nav-item ${location.pathname === "/withdrawal/approved" ? "active" : ""}`}>
+                                    <Link className="nav-link" to="/withdrawal/approved">
                                         <span className="menu-title">Approved</span>
                                     </Link>
                                 </li>
-                                <li className={`nav-item ${location.pathname === "/history/performed" ? "active" : ""}`}>
-                                    <Link className="nav-link" to="/history/performed">
+                                <li className={`nav-item ${location.pathname === "/withdrawal/rejected" ? "active" : ""}`}>
+                                    <Link className="nav-link" to="/withdrawal/rejected">
                                         <span className="menu-title">Cancelled</span>
                                     </Link>
                                 </li>
