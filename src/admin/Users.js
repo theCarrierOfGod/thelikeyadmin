@@ -50,7 +50,7 @@ const Users = () => {
         return () => {
             return true;
         }
-    }, [location.key, useHook.userS])
+    }, [location.key])
 
     useEffect(() => {
         getNow();
