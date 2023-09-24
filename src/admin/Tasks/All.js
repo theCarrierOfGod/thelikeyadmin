@@ -51,6 +51,15 @@ const All = () => {
         }
     }, [location.key])
 
+    useEffect(() => {
+      getNow();
+    
+      return () => {
+        return true;
+      }
+    }, []);
+    
+
     return (
         <>
             <Helmet>
