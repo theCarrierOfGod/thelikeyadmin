@@ -254,6 +254,15 @@ export const Tasks = ({ children }) => {
         }
     }
 
+    const pendingProofs = async () => {
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/proofs/pending`);
+            setProofs(res.data)
+        } catch (error) {
+            setProofs([]);
+        }
+    }
+
     useEffect(() => {
         setProofs([]);
     }, [location.key])
@@ -261,7 +270,7 @@ export const Tasks = ({ children }) => {
     return (
         <TaskContext.Provider value={{
             addingNew, myTasks, isLoading, tasksToDo, uniqueTask, fetchingTask, proofs, proofI,
-            addNewTask, getMyTasks, getTasksToDo, fetchTask, uploadTask, uploadTask, updateTask, getProofs, myProofs, myPerformed, setProofI,
+            addNewTask, getMyTasks, getTasksToDo, fetchTask, uploadTask, uploadTask, updateTask, getProofs, myProofs, myPerformed, setProofI, pendingProofs
         }}>
             {children}
         </TaskContext.Provider>

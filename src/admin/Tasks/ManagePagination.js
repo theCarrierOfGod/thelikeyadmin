@@ -5,10 +5,12 @@ import './pagination.css'
 import swal from 'sweetalert';
 import axios from 'axios';
 import { useHook } from '../../contexts/Hook';
+import { useTask } from '../../contexts/Tasks';
 
 const ManagePagination = ({ items, perpage, type }) => {
     const hook = useHook();
     const itemPerPage = perpage;
+    const tasks = useTask();
     const total = items.length;
     const pageCount = Math.ceil(total / itemPerPage);
     const [itemOffset, setItemOffset] = useState(0);
@@ -46,7 +48,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                     timer: 2000
                 })
                     .then((res) => {
-                        window.location.reload();
+                        tasks.pendingProofs();
                     })
 
             } else {
@@ -79,7 +81,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                     icon: 'success',
                 })
                     .then((res) => {
-                        window.location.reload();
+                        tasks.pendingProofs();
                     })
             } else {
                 swal({

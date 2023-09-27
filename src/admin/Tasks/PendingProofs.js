@@ -3,32 +3,21 @@ import { Helmet } from 'react-helmet'
 import Adminheader from '../Adminheader'
 import Adminsidebar from '../Adminsidebar'
 import Footer from '../../user/Footer'
-import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useHook } from '../../contexts/Hook'
 import { useEffect } from 'react'
-import axios from 'axios'
 import ManagePagination from './ManagePagination'
+import { useTask } from '../../contexts/Tasks'
 
 
 
 const PendingProofs = () => {
     const hook = useHook();
+    const tasks = useTask();
     const location = useLocation();
 
-    const [proofs, setProofs] = useState([]);
-
-    const pendingProofs = async () => {
-        try {
-            const res = await axios.get(`${hook.endpoint}/admin/proofs/pending`);
-            setProofs(res.data)
-        } catch (error) {
-            setProofs([]);
-        }
-    }
-
     const getNow = () => {
-        pendingProofs();
+        tasks.pendingProofs();
     }
 
     useEffect(() => {
@@ -71,7 +60,7 @@ const PendingProofs = () => {
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2 table-responsive row">
-                                            <ManagePagination items={proofs} perpage={2} type={'pending'} />
+                                            <ManagePagination items={tasks.proofs} perpage={2} type={'pending'} />
                                         </div>
                                     </div>
                                 </div>
