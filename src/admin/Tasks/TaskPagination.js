@@ -75,7 +75,7 @@ const TaskPagination = ({ items, perpage }) => {
                         {currentItems.map((user, index) => (
                             <>
                                 <tr>
-                                    <th>{index + 1}</th>
+                                    <th>{user.unique_id}</th>
                                     <td>
                                         <strong>
                                             {user.title}
