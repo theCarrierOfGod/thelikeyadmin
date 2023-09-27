@@ -119,11 +119,17 @@ const ManagePagination = ({ items, perpage, type }) => {
                     <div className='col-sm-6 mt-4'>
                         <div className='card' style={{ overflow: 'hidden' }}>
                             <div className='card-body p-2'>
+                                <h6 style={{ textTransform: 'uppercase'}}>
+                                    {proof.title}
+                                </h6>
                                 <p>
                                     <strong>Proof BY: </strong> {proof.proofBy}
                                 </p>
                                 <p>
                                     <strong>Task ID: </strong> {proof.taskID}
+                                </p>
+                                <p>
+                                    <strong>Task By: </strong> {proof.taskBY}
                                 </p>
                                 <p>
                                     <strong>Task Status: </strong> {proof.taskStatus}
