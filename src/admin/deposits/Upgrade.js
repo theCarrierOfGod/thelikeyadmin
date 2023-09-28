@@ -167,12 +167,14 @@ const Upgrade = () => {
                                                                     <th>#</th>
                                                                     <th>TransactionID</th>
                                                                     <th>Wallet To</th>
-                                                                    <th>Credits</th>
                                                                     <th>User</th>
                                                                     <th>Amount (USD)</th>
                                                                     <th>Amount</th>
                                                                     <th>Currency</th>
                                                                     <th>Status</th>
+                                                                    <th>
+                                                                        <i className='fa fa-edit'></i>
+                                                                    </th>
                                                                 </tr>
                                                             </thead>
                                                             <tfoot>
@@ -180,7 +182,6 @@ const Upgrade = () => {
                                                                     <th>#</th>
                                                                     <th>TransactionID</th>
                                                                     <th>Wallet To</th>
-                                                                    <th>Credits</th>
                                                                     <th>User</th>
                                                                     <th>Amount (USD)</th>
                                                                     <th>Amount</th>
@@ -202,7 +203,6 @@ const Upgrade = () => {
                                                                                 </strong>
                                                                             </td>
                                                                             <td>{user.wallet_to}</td>
-                                                                            <td>{user.credits}</td>
                                                                             <td>
                                                                                 {user.username}
                                                                             </td>
