@@ -9,6 +9,7 @@ import { useHook } from '../../contexts/Hook'
 import { useEffect } from 'react'
 import axios from 'axios'
 import ManagePagination from './ManagePagination'
+import swal from 'sweetalert'
 
 
 
@@ -59,6 +60,67 @@ const Upgrade = () => {
             setCurrentPage(currentPage - 1);
             setItemOffset(itemOffset - itemPerPage);
             setEndOffset(endOffset - itemPerPage)
+        }
+    }
+
+    const approveDeposit = async (transaction_id) => {
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/upgrade/${transaction_id}/approved`);
+            console.log(res.data);
+            if (res.data.success) {
+                swal({
+                    title: 'Approve Upgrade',
+                    text: 'Upgrade approved',
+                    icon: 'success',
+                    timer: 2000
+                })
+                    .then((res) => {
+                        getNow();
+                    })
+
+            } else {
+                swal({
+                    title: 'Approve Upgrade',
+                    text: res.data.error,
+                    icon: 'error',
+                })
+            }
+        } catch (error) {
+            swal({
+                title: 'Approve Upgrade',
+                text: error.message,
+                icon: 'error',
+            })
+        }
+    }
+
+    const rejectDeposit = async (transaction_id) => {
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/upgrade/${transaction_id}/rejected`);
+            if (res.data.success) {
+                swal({
+                    title: 'Reject Upgrade',
+                    text: 'Upgrade rejected!',
+                    icon: 'success',
+                })
+                    .then((res) => {
+                        getNow();
+                    })
+            } else {
+                swal({
+                    title: 'Reject Upgrade',
+                    text: res.data.error,
+                    icon: 'error',
+                })
+            }
+        } catch (error) {
+            swal({
+                title: 'Reject Upgrade',
+                text: error.message,
+                icon: 'error',
+
+                buttons: false,
+            })
         }
     }
 
@@ -148,7 +210,7 @@ const Upgrade = () => {
                                                                             <td>{user.amount_crypto}</td>
                                                                             <td>{user.currency}</td>
                                                                             <td>{user.status}</td>
-                                                                            {/* <td>
+                                                                            <td className={(user.status === 'processing') ? '' : 'd-none'} >
                                                                                 {user.status === "processing" ? (
                                                                                     <>
                                                                                         <div className='d-flex justify-content-center p-3'>
@@ -156,7 +218,7 @@ const Upgrade = () => {
                                                                                                 className='button is-success'
                                                                                                 onClick={() => {
                                                                                                     swal({
-                                                                                                        title: 'Approve Deposit',
+                                                                                                        title: 'Approve Upgrade',
                                                                                                         text: 'Do you really want to proceed?',
                                                                                                         icon: 'warning',
                                                                                                         buttons: ["Stop", "Yes, Proceed!"],
@@ -166,7 +228,7 @@ const Upgrade = () => {
                                                                                                                 approveDeposit(user.transaction_id)
                                                                                                             } else {
                                                                                                                 swal({
-                                                                                                                    title: 'Approve Deposit',
+                                                                                                                    title: 'Approve Upgrade',
                                                                                                                     text: 'Cancelled by user',
                                                                                                                     icon: 'error',
                                                                                                                     timer: 2000
@@ -182,7 +244,7 @@ const Upgrade = () => {
                                                                                                 className='button is-warning'
                                                                                                 onClick={() => {
                                                                                                     swal({
-                                                                                                        title: 'Reject Deposit',
+                                                                                                        title: 'Reject Upgrade',
                                                                                                         text: 'Do you really want to cancel it?',
                                                                                                         icon: 'warning',
                                                                                                         buttons: ["Stop", "Yes, Cancel!"],
@@ -192,7 +254,7 @@ const Upgrade = () => {
                                                                                                                 rejectDeposit(user.transaction_id)
                                                                                                             } else {
                                                                                                                 swal({
-                                                                                                                    title: 'Reject Deposit',
+                                                                                                                    title: 'Reject Upgrade',
                                                                                                                     text: 'Cancelled by user',
                                                                                                                     icon: 'error',
                                                                                                                     timer: 2000
@@ -206,7 +268,7 @@ const Upgrade = () => {
                                                                                         </div>
                                                                                     </>
                                                                                 ) : null}
-                                                                            </td> */}
+                                                                            </td>
                                                                         </tr>
                                                                     </>
                                                                 ))}
