@@ -39,12 +39,12 @@ const Upgrade = () => {
         }
     }, [location.key])
     const itemPerPage = 10;
-    const total = proof.length;
+    const total = proofs.length;
     const pageCount = Math.ceil(total / itemPerPage);
     const [itemOffset, setItemOffset] = useState(0);
     const [endOffset, setEndOffset] = useState(itemPerPage)
     const [currentPage, setCurrentPage] = useState(1);
-    const currentItems = items.slice(itemOffset, endOffset);
+    const currentItems = proofs.slice(itemOffset, endOffset);
 
 
     const handleNext = () => {
@@ -94,7 +94,7 @@ const Upgrade = () => {
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
-                                            <ManagePagination items={proofs} perpage={12} type={'pending'} />
+                                            {/* <ManagePagination items={proofs} perpage={12} type={'pending'} /> */}
 
                                             {total === 0 ? null : (
                                                 <>
@@ -148,7 +148,7 @@ const Upgrade = () => {
                                                                             <td>{user.amount_crypto}</td>
                                                                             <td>{user.currency}</td>
                                                                             <td>{user.status}</td>
-                                                                            <td>
+                                                                            {/* <td>
                                                                                 {user.status === "processing" ? (
                                                                                     <>
                                                                                         <div className='d-flex justify-content-center p-3'>
@@ -206,7 +206,7 @@ const Upgrade = () => {
                                                                                         </div>
                                                                                     </>
                                                                                 ) : null}
-                                                                            </td>
+                                                                            </td> */}
                                                                         </tr>
                                                                     </>
                                                                 ))}
