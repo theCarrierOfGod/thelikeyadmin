@@ -38,7 +38,7 @@ const Upgrade = () => {
             return true;
         }
     }, [location.key])
-    const itemPerPage = 10;
+    const itemPerPage = 5;
     const total = proofs.length;
     const pageCount = Math.ceil(total / itemPerPage);
     const [itemOffset, setItemOffset] = useState(0);
@@ -130,7 +130,7 @@ const Upgrade = () => {
                                                                 </tr>
                                                             </tfoot>
                                                             <tbody>
-                                                                {proofs.map((user, index) => (
+                                                                {currentItems.map((user, index) => (
                                                                     <>
                                                                         <tr>
                                                                             <th>{index + 1}</th>
