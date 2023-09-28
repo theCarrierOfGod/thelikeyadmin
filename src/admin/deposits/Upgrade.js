@@ -213,9 +213,9 @@ const Upgrade = () => {
                                                                             <td className={(user.status === 'processing') ? '' : 'd-none'} >
                                                                                 {user.status === "processing" ? (
                                                                                     <>
-                                                                                        <div className='d-flex justify-content-center p-3'>
+                                                                                        <div className='d-flex justify-content-center p-1'>
                                                                                             <button
-                                                                                                className='button is-success'
+                                                                                                className='button is-success p-1'
                                                                                                 onClick={() => {
                                                                                                     swal({
                                                                                                         title: 'Approve Upgrade',
@@ -239,9 +239,9 @@ const Upgrade = () => {
                                                                                             >
                                                                                                 Approve
                                                                                             </button>
-                                                                                            <span style={{ width: '10px', height: '10px' }}></span>
+                                                                                            <span style={{ width: '10px', height: '5px' }}></span>
                                                                                             <button
-                                                                                                className='button is-warning'
+                                                                                                className='button is-warning p-1'
                                                                                                 onClick={() => {
                                                                                                     swal({
                                                                                                         title: 'Reject Upgrade',
