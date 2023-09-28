@@ -22,6 +22,7 @@ import Categories from './admin/Categories';
 import All from './admin/Tasks/All';
 import PendingDeopsits from './admin/deposits/PendingDeopsits';
 import ApprovedDeopsits from './admin/deposits/ApprovedDeposits';
+import Upgrade from './admin/deposits/Upgrade';
 import RejectedDeopsits from './admin/deposits/RejectedDeposits';
 import AllPromotions from './admin/Tasks/AllPromotions';
 import PendingWiths from './admin/with/PendingWithdrawals';
@@ -162,6 +163,17 @@ function App() {
                       <Suspense fallback={<Preloader />}>
                         <MustLogin>
                           <ApprovedDeopsits />
+                        </MustLogin>
+                      </Suspense>
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/deposit/upgrades"
+                    element={
+                      <Suspense fallback={<Preloader />}>
+                        <MustLogin>
+                          <Upgrade />
                         </MustLogin>
                       </Suspense>
                     }

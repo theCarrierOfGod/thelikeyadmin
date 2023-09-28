@@ -12,13 +12,13 @@ import ManagePagination from './ManagePagination'
 
 
 
-const PendingDeopsits = () => {
+const Upgrade = () => {
     const hook = useHook();
     const location = useLocation();
 
     const [proofs, setProofs] = useState([]);
 
-    const PendingDeopsits = async () => {
+    const Upgrade = async () => {
         try {
             const res = await axios.get(`${hook.endpoint}/admin/upgrades`);
             setProofs(res.data)
@@ -28,7 +28,7 @@ const PendingDeopsits = () => {
     }
 
     const getNow = () => {
-        PendingDeopsits();
+        Upgrade();
     }
 
     useEffect(() => {
@@ -238,4 +238,4 @@ const PendingDeopsits = () => {
     )
 }
 
-export default PendingDeopsits
+export default Upgrade
