@@ -23,25 +23,10 @@ const Users = () => {
 
     const [users, setUsers] = useState([]);
 
-    const allUsers = async () => {
-        setAd(true);
-        setUsers([])
-        try {
-            const res = await axios.get(`${hook.endpoint}/admin/users?username=${username}`);
-            if (res.data.users) {
-                setUsers(res.data.users);
-            } else {
-                setUsers([])
-            }
-            setAd(false)
-        } catch (error) {
-            setUsers([]);
-            setAd(false)
-        }
-    }
+    
 
     const getNow = () => {
-        allUsers();
+        useHook.allUsers();
     }
 
     useEffect(() => {

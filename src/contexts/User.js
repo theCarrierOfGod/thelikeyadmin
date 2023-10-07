@@ -244,7 +244,6 @@ export const User = ({ children }) => {
                     button.removeAttribute('disabled');
                     button.innerHTML = "Update"
                 })
-
         } catch (error) {
             // Handle errors
             console.log(error)
@@ -272,9 +271,22 @@ export const User = ({ children }) => {
         }
     }
 
-    // setTimeout(() => {
-    //     probUserDetails();
-    // }, 200);
+    const allUsers = async () => {
+        setAd(true);
+        setUsers([])
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/users?username=${username}`);
+            if (res.data.users) {
+                setUsers(res.data.users);
+            } else {
+                setUsers([])
+            }
+            setAd(false)
+        } catch (error) {
+            setUsers([]);
+            setAd(false)
+        }
+    }
 
     useEffect(() => {
         probUserDetails();
@@ -286,7 +298,7 @@ export const User = ({ children }) => {
     }, [location, auth.userOnline])
 
     useEffect(() => {
-        getUserDetails(auth.userOnline)
+        getUserDetails(window.localStorage.getItem('username'))
         checkPrivi();
         return () => {
             return true;
@@ -296,7 +308,7 @@ export const User = ({ children }) => {
     return (
         <UserContext.Provider value={{
             userImage, userName, userEmail, firstname, lastname, userS, userDetails, admin, facebook, twitter, instagram, phoneNumber, homeActs, taskCount, promotionCount, processedBalance, earnedBalance, depositedBalance, activities, performedCount, tiktok,
-            getUserDetails, getActivities, getHomeActivities, countPromotions, countTasks, updatePicture, updateSocial, countPerformed, updatePersonal, setUserDetails, setUserS,
+            getUserDetails, allUsers, getActivities, getHomeActivities, countPromotions, countTasks, updatePicture, updateSocial, countPerformed, updatePersonal, setUserDetails, setUserS,
         }}>
             {children}
         </UserContext.Provider>
