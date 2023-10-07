@@ -142,8 +142,7 @@ const Userpagination = ({ items, perpage }) => {
                             <th><abbr title="Email address">Email</abbr></th>
                             <th><abbr title="Phone number">Phone</abbr></th>
                             <th>Location</th>
-                            <th>Earned</th>
-                            <th>Deposited</th>
+                            <th>Balance</th>
                             <th>Referral ID</th>
                             <th>Status</th>
                         </tr>
@@ -166,8 +165,7 @@ const Userpagination = ({ items, perpage }) => {
                                     <td>
                                         {user.location}
                                     </td>
-                                    <td>{user.earned}</td>
-                                    <td>{user.deposited}</td>
+                                    <td>{user.balance}</td>
                                     <td>{user.referee !== "" ? user.referee : 'admin'}</td>
                                     <td>
                                         <button className={user.verified === '0' ? 'button is-link is-light' : 'd-none'} onClick={() => { activateAccount(user.username) }}>
