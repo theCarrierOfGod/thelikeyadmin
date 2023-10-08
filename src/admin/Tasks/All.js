@@ -24,7 +24,7 @@ const All = () => {
     const [users, setUsers] = useState([]);
 
     const allUsers = async () => {
-        setAd(false)
+        setAd(true)
         try {
             const res = await axios.get(`${hook.endpoint}/admin/all_tasks`);
             if (res.data) {
@@ -52,13 +52,13 @@ const All = () => {
     }, [location.key])
 
     useEffect(() => {
-      getNow();
-    
-      return () => {
-        return true;
-      }
+        getNow();
+
+        return () => {
+            return true;
+        }
     }, []);
-    
+
 
     return (
         <>
@@ -92,17 +92,7 @@ const All = () => {
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
-                                            {users.length === 0 ? (
-                                                <>
-                                                    <div className='notification is-info is-light text-center subtitle'>
-                                                        No data
-                                                    </div>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <TaskPagination items={users} perpage={15} />
-                                                </>
-                                            )}
+
                                             {ad ? (
                                                 <>
                                                     <div className='notification is-info is-light text-center'>
@@ -110,6 +100,11 @@ const All = () => {
                                                     </div>
                                                 </>
                                             ) : null}
+                                            {users.length === 0 ? null : (
+                                                <>
+                                                    <TaskPagination items={users} perpage={15} />
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

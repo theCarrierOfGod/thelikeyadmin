@@ -66,8 +66,10 @@ const Users = () => {
                             <div className="row justify-content-center">
                                 <div className='col-md-12 strech-card grid-margin'>
                                     <input type='text' placeholder='Username/Email' className='form-control' value={username} onChange={(e) => setUsername(e.target.value)} />
+                                    <br />
                                     <button className='button is-link is-light' onClick={(e) => {
                                         if (username === "") {
+                                            alert('Search field required!')
                                             return false;
                                         } else {
                                             getNow();
@@ -78,7 +80,7 @@ const Users = () => {
                                     <button className='button is-link is-light' onClick={(e) => {
                                         setUsername('');
                                         setTimeout(() => {
-                                            getNow();
+                                            userHook.allUsers('');
                                         }, 100);
                                     }}>
                                         Clear Filter
