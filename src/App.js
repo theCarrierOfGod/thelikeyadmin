@@ -28,6 +28,7 @@ import AllPromotions from './admin/Tasks/AllPromotions';
 import PendingWiths from './admin/with/PendingWithdrawals';
 import RejectedWiths from './admin/with/RejectedWithdrawals';
 import ApprovedWiths from './admin/with/ApprovedWiths';
+import Proofs from './admin/Tasks/Proofs';
 
 
 function App() {
@@ -108,6 +109,16 @@ function App() {
                           <AllPromotions />
                         </MustLogin>
                       </Suspense>
+                    }
+                  />
+
+                  <Route
+                    exact
+                    path="/task/view/:unique_id/admin"
+                    element={
+                      <MustLogin>
+                        <Proofs />
+                      </MustLogin>
                     }
                   />
 

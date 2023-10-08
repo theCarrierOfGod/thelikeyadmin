@@ -112,28 +112,27 @@ const ManagePagination = ({ items, perpage, type }) => {
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>
+                                        <i className='fa fa-edit'></i>
+                                    </th>
                                     <th>TransactionID</th>
                                     <th>Wallet To</th>
-                                    <th>Credits</th>
+                                    <th>Amount</th>
                                     <th>User</th>
-                                    <th>Amount (USDT)</th>
-                                    <th>Currency</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>TransactionID</th>
-                                    <th>Wallet To</th>
-                                    <th>Credits</th>
-                                    <th>User</th>
-                                    <th>Amount (USDT)</th>
-                                    <th>Currency</th>
-                                    <th>Status</th>
                                     <th>
                                         <i className='fa fa-edit'></i>
                                     </th>
+                                    <th>TransactionID</th>
+                                    <th>Wallet To</th>
+                                    <th>Amount</th>
+                                    <th>User</th>
+                                    <th>Status</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -141,19 +140,6 @@ const ManagePagination = ({ items, perpage, type }) => {
                                     <>
                                         <tr>
                                             <th>{index + 1}</th>
-                                            <td>
-                                                <strong>
-                                                    {user.transaction_id}
-                                                </strong>
-                                            </td>
-                                            <td>{user.wallet_to}</td>
-                                            <td>{user.credits}</td>
-                                            <td>
-                                                {user.username}
-                                            </td>
-                                            <td>{user.amount}</td>
-                                            <td>{user.currency}</td>
-                                            <td>{user.status}</td>
                                             <td>
                                                 {user.status === "processing" ? (
                                                     <>
@@ -213,6 +199,17 @@ const ManagePagination = ({ items, perpage, type }) => {
                                                     </>
                                                 ) : null}
                                             </td>
+                                            <td>
+                                                <strong>
+                                                    {user.transaction_id}
+                                                </strong>
+                                            </td>
+                                            <td>{user.wallet_to}</td>
+                                            <td>{user.credits}</td>
+                                            <td>
+                                                {user.username}
+                                            </td>
+                                            <td>{user.status}</td>
                                         </tr>
                                     </>
                                 ))}

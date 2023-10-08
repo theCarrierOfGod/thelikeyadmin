@@ -114,11 +114,8 @@ const ManagePagination = ({ items, perpage, type }) => {
                                     <th>#</th>
                                     <th>TransactionID</th>
                                     <th>Wallet To</th>
-                                    <th>Credits</th>
-                                    <th>User</th>
-                                    <th>Amount (USD)</th>
                                     <th>Amount</th>
-                                    <th>Currency</th>
+                                    <th>Username</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -127,11 +124,8 @@ const ManagePagination = ({ items, perpage, type }) => {
                                     <th>#</th>
                                     <th>TransactionID</th>
                                     <th>Wallet To</th>
-                                    <th>Credits</th>
-                                    <th>User</th>
-                                    <th>Amount (USD)</th>
                                     <th>Amount</th>
-                                    <th>Currency</th>
+                                    <th>Username</th>
                                     <th>Status</th>
                                     <th>
                                         <i className='fa fa-edit'></i>
@@ -153,9 +147,6 @@ const ManagePagination = ({ items, perpage, type }) => {
                                             <td>
                                                 {user.username}
                                             </td>
-                                            <td>{user.amount_usd}</td>
-                                            <td>{user.amount_crypto}</td>
-                                            <td>{user.currency}</td>
                                             <td>{user.status}</td>
                                             <td>
                                                 {user.status === "processing" ? (

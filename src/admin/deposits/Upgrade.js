@@ -39,7 +39,7 @@ const Upgrade = () => {
             return true;
         }
     }, [location.key])
-    const itemPerPage = 5;
+    const itemPerPage = 20;
     const total = proofs.length;
     const pageCount = Math.ceil(total / itemPerPage);
     const [itemOffset, setItemOffset] = useState(0);
@@ -156,8 +156,6 @@ const Upgrade = () => {
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
-                                            {/* <ManagePagination items={proofs} perpage={12} type={'pending'} /> */}
-
                                             {total === 0 ? null : (
                                                 <>
                                                     <div className="table-responsive">
@@ -166,30 +164,26 @@ const Upgrade = () => {
                                                                 <tr>
                                                                     <th>#</th>
                                                                     <th>TransactionID</th>
-                                                                    <th>Wallet To</th>
-                                                                    <th>User</th>
-                                                                    <th>Amount (USD)</th>
-                                                                    <th>Amount</th>
-                                                                    <th>Currency</th>
-                                                                    <th>Status</th>
                                                                     <th>
                                                                         <i className='fa fa-edit'></i>
                                                                     </th>
+                                                                    <th>Wallet To</th>
+                                                                    <th>User</th>
+                                                                    <th>Amount</th>
+                                                                    <th>Status</th>
                                                                 </tr>
                                                             </thead>
                                                             <tfoot>
                                                                 <tr>
                                                                     <th>#</th>
                                                                     <th>TransactionID</th>
-                                                                    <th>Wallet To</th>
-                                                                    <th>User</th>
-                                                                    <th>Amount (USD)</th>
-                                                                    <th>Amount</th>
-                                                                    <th>Currency</th>
-                                                                    <th>Status</th>
                                                                     <th>
                                                                         <i className='fa fa-edit'></i>
                                                                     </th>
+                                                                    <th>Wallet To</th>
+                                                                    <th>User</th>
+                                                                    <th>Amount</th>
+                                                                    <th>Status</th>
                                                                 </tr>
                                                             </tfoot>
                                                             <tbody>
@@ -202,15 +196,7 @@ const Upgrade = () => {
                                                                                     {user.transaction_id}
                                                                                 </strong>
                                                                             </td>
-                                                                            <td>{user.wallet_to}</td>
-                                                                            <td>
-                                                                                {user.username}
-                                                                            </td>
-                                                                            <td>{user.amount_usd}</td>
-                                                                            <td>{user.amount_crypto}</td>
-                                                                            <td>{user.currency}</td>
-                                                                            <td>{user.status}</td>
-                                                                            <td className={(user.status === 'processing') ? '' : 'd-none'} >
+                                                                            <td >
                                                                                 {user.status === "processing" ? (
                                                                                     <>
                                                                                         <div className='d-flex justify-content-center p-1'>
@@ -269,6 +255,12 @@ const Upgrade = () => {
                                                                                     </>
                                                                                 ) : null}
                                                                             </td>
+                                                                            <td>{user.wallet_to}</td>
+                                                                            <td>
+                                                                                {user.username}
+                                                                            </td>
+                                                                            <td>{user.amount_usd}</td>
+                                                                            <td>{user.status}</td>
                                                                         </tr>
                                                                     </>
                                                                 ))}
