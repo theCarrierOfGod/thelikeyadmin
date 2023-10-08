@@ -15,7 +15,6 @@ const Userpagination = ({ items, perpage }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const currentItems = items.slice(itemOffset, endOffset);
 
-
     const handleNext = () => {
         if (pageCount !== currentPage) {
             setCurrentPage(currentPage + 1);
@@ -51,7 +50,7 @@ const Userpagination = ({ items, perpage }) => {
                 const res = await axios.get(`${hook.endpoint}/admin/activate_account/${username}`);
                 if (res.data.success) {
                     alert(res.data.success)
-                    userHook.setUserS(1223)
+                    userHook.allUsers()
                 } else {
                     alert(res.data.error)
                 }
@@ -69,7 +68,7 @@ const Userpagination = ({ items, perpage }) => {
                 const res = await axios.get(`${hook.endpoint}/admin/suspend_account/${username}`);
                 if (res.data.success) {
                     alert(res.data.success);
-                    userHook.setUserS(1243);
+                    userHook.allUsers();
                 } else {
                     alert(res.data.error)
                 }
@@ -87,7 +86,7 @@ const Userpagination = ({ items, perpage }) => {
                 const res = await axios.get(`${hook.endpoint}/admin/reactivate_account/${username}`);
                 if (res.data.success) {
                     alert(res.data.success);
-                    userHook.setUserS(2335)
+                    userHook.allUsers()
                 } else {
                     alert(res.data.error)
                 }
@@ -107,6 +106,7 @@ const Userpagination = ({ items, perpage }) => {
                     </div>
                 </div>
             </div>
+
             <div className={total === 0 ? "d-none" : "col-lg-12 mt-4 grid-margin"} style={{ color: 'black', fontFamily: 'monospace', textAlign: 'right'}}>
                 {total} result(s)
             </div>

@@ -26,7 +26,8 @@ export const User = ({ children }) => {
     const [promotionCount, setPromotionCount] = useState(0);
     const [performedCount, setPerformedCount] = useState(0);
     const [admin, setAdmin] = useState(false);
-    const [userS, setUserS] = useState('0000');
+    const [users, setUsers] = useState([]);
+    const [searchUser, setSearchUser] = useState('');
 
     const [processedBalance, setProcessedBalance] = useState(0);
     const [earnedBalance, setEarnedBalance] = useState(0);
@@ -271,8 +272,8 @@ export const User = ({ children }) => {
         }
     }
 
-    const allUsers = async () => {
-        setAd(true);
+    const allUsers = async (username) => {
+        setFetchingDetails(true);
         setUsers([])
         try {
             const res = await axios.get(`${hook.endpoint}/admin/users?username=${username}`);
@@ -281,10 +282,10 @@ export const User = ({ children }) => {
             } else {
                 setUsers([])
             }
-            setAd(false)
+            setFetchingDetails(false)
         } catch (error) {
             setUsers([]);
-            setAd(false)
+            setFetchingDetails(false)
         }
     }
 
@@ -307,8 +308,8 @@ export const User = ({ children }) => {
 
     return (
         <UserContext.Provider value={{
-            userImage, userName, userEmail, firstname, lastname, userS, userDetails, admin, facebook, twitter, instagram, phoneNumber, homeActs, taskCount, promotionCount, processedBalance, earnedBalance, depositedBalance, activities, performedCount, tiktok,
-            getUserDetails, allUsers, getActivities, getHomeActivities, countPromotions, countTasks, updatePicture, updateSocial, countPerformed, updatePersonal, setUserDetails, setUserS,
+            users, userImage, userName, userEmail, firstname, lastname,  userDetails, admin, facebook, twitter, instagram, phoneNumber, homeActs, taskCount, promotionCount, processedBalance, earnedBalance, depositedBalance, activities, performedCount, tiktok,
+            getUserDetails, allUsers, getActivities, getHomeActivities, countPromotions, countTasks, updatePicture, updateSocial, countPerformed, updatePersonal, setUserDetails,
         }}>
             {children}
         </UserContext.Provider>

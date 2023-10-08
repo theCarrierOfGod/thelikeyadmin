@@ -26,7 +26,7 @@ export const Tasks = ({ children }) => {
     const addNewTask = async (data) => {
         setAddingNew(true)
         try {
-            const res = await axios.post(`${hook.endpoint}/task/new`, data, {
+            let res = await axios.post(`${hook.endpoint}/task/new`, data, {
                 headers: {
                     'content-type': 'application/json',
                     'X-CSRF-TOKEN': hook.token
@@ -66,7 +66,7 @@ export const Tasks = ({ children }) => {
     const getMyTasks = async (username, status) => {
         setIsLoading(true)
         try {
-            const res = await axios.get(`${hook.endpoint}/tasks?username=${username}&status=${status}`);
+            let res = await axios.get(`${hook.endpoint}/tasks?username=${username}&status=${status}`);
             if (res.data.error) {
                 setMyTasks([]);
             } else {
@@ -96,7 +96,7 @@ export const Tasks = ({ children }) => {
             var completion = `all/${username}`;
         }
         try {
-            const res = await axios.get(`${hook.endpoint}/tasks/todo/${completion}`);
+            let res = await axios.get(`${hook.endpoint}/tasks/todo/${completion}`);
             if (res.data.error) {
                 setTasksToDo([]);
             } else {
@@ -113,7 +113,7 @@ export const Tasks = ({ children }) => {
         setFetchingTask(true);
         setUniqueTask([])
         try {
-            const res = await axios.get(`${hook.endpoint}/task/${unique_id}`);
+            let res = await axios.get(`${hook.endpoint}/task/${unique_id}`);
             if (res.data.error) {
                 setUniqueTask([]);
             } else {
@@ -129,7 +129,7 @@ export const Tasks = ({ children }) => {
     const updateTask = async (data) => {
         setAddingNew(true)
         try {
-            const res = await axios.post(`${hook.endpoint}/task/update`, data, {
+            let res = await axios.post(`${hook.endpoint}/task/update`, data, {
                 headers: {
                     'content-type': 'application/json',
                     'X-CSRF-TOKEN': hook.token
@@ -161,7 +161,7 @@ export const Tasks = ({ children }) => {
 
     const uploadTask = async (data) => {
         try {
-            const res = await axios
+            let res = await axios
                 .post(`${hook.endpoint}/tasks/proof/upload`, data, {
                     headers: {
                         "Content-Type": "application/json",
@@ -207,7 +207,7 @@ export const Tasks = ({ children }) => {
         setIsLoading(true);
         setProofs([]);
         try {
-            const res = await axios.get(`${hook.endpoint}/task/proof/${unique_id}`);
+            let res = await axios.get(`${hook.endpoint}/task/proof/${unique_id}`);
             if (res.data.error) {
                 setProofs([]);
             } else {
@@ -224,7 +224,7 @@ export const Tasks = ({ children }) => {
         setIsLoading(true);
         setProofs([]);
         try {
-            const res = await axios.get(`${hook.endpoint}/tasks/myperformed/${username}`);
+            let res = await axios.get(`${hook.endpoint}/tasks/myperformed/${username}`);
             if (res.data.error) {
                 setProofs([]);
             } else {
@@ -241,7 +241,7 @@ export const Tasks = ({ children }) => {
         setIsLoading(true);
         setProofI([]);
         try {
-            const res = await axios.get(`${hook.endpoint}/tasks/myproof/${taskID}/${username}`);
+            let res = await axios.get(`${hook.endpoint}/tasks/myproof/${taskID}/${username}`);
             if (res.data.error) {
                 setProofI([]);
             } else {
@@ -256,7 +256,7 @@ export const Tasks = ({ children }) => {
 
     const pendingProofs = async () => {
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/proofs/pending`);
+            let res = await axios.get(`${hook.endpoint}/admin/proofs/pending`);
             setProofs(res.data)
         } catch (error) {
             setProofs([]);
@@ -270,7 +270,7 @@ export const Tasks = ({ children }) => {
     return (
         <TaskContext.Provider value={{
             addingNew, myTasks, isLoading, tasksToDo, uniqueTask, fetchingTask, proofs, proofI,
-            addNewTask, getMyTasks, getTasksToDo, fetchTask, uploadTask, uploadTask, updateTask, getProofs, myProofs, myPerformed, setProofI, pendingProofs
+            addNewTask, getMyTasks, getTasksToDo, fetchTask, uploadTask, updateTask, getProofs, myProofs, myPerformed, setProofI, pendingProofs
         }}>
             {children}
         </TaskContext.Provider>

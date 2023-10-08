@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../pagination.css'
 import axios from 'axios';
 import { useHook } from '../../contexts/Hook';
+import { Link } from 'react-router-dom';
 
 const TaskPagination = ({ items, perpage }) => {
     const hook = useHook();
@@ -39,7 +40,7 @@ const TaskPagination = ({ items, perpage }) => {
                     </div>
                 </div>
             </div>
-            <div className="table-responsive">
+            {/* <div className="table-responsive">
                 <table className='table table-stripped'>
                     <thead>
                         <tr>
@@ -97,6 +98,35 @@ const TaskPagination = ({ items, perpage }) => {
                         ))}
                     </tbody>
                 </table>
+            </div> */}
+
+            <div className='card-columns'>
+                {currentItems.map((user, index) => (
+                    <div class="card">
+                        <header class="card-header bg-info">
+                            <p class="card-header-title" style={{ textTransform: 'uppercase'}}>
+                                {user.title}
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-6">Created by: {user.created_by}</p>
+                                    <p class="subtitle is-6">Quantity: {user.target}</p>
+                                    <p class="subtitle is-6">Achieved: {user.achieved}</p>
+                                    <p class="title is-6">Approved: {user.approved}</p>
+                                    <p class="title is-6">Location: {user.location}</p>
+                                    <p class="subtitle is-6">Status: {user.status}</p>
+                                    <p class="subtitle is-6">CPU: {user.cpu}</p>
+                                    <Link to={user.link}>{user.link}</Link>
+                                </div>
+                            </div>
+                            <div class="content">
+                                {user.description}
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
 
             <div className={total === 0 ? "d-none" : "col-lg-12 mt-4 text-right"} style={{ textAlign: 'right' }}>

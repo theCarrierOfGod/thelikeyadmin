@@ -23,10 +23,8 @@ const Users = () => {
 
     const [users, setUsers] = useState([]);
 
-    
-
     const getNow = () => {
-        useHook.allUsers();
+        userHook.allUsers(username);
     }
 
     useEffect(() => {
@@ -36,15 +34,6 @@ const Users = () => {
             return true;
         }
     }, [location.key])
-
-    useEffect(() => {
-        getNow();
-
-        return () => {
-            return true;
-        }
-    }, [useHook.userS])
-
 
     return (
         <>
@@ -95,12 +84,17 @@ const Users = () => {
                                         Clear Filter
                                     </button>
                                 </div>
-                                <div className="col-md-12 stretch-card grid-margin">
+                                <div className={`${userHook.users.length === 0 ? "col-md-12 stretch-card grid-margin" : "d-none"}`}>
+                                    <div className="notification is-info w-100 text-center ">
+                                        <i className='fa fa-spinner fa-spin'></i> Loading...
+                                    </div>
+                                </div>
+                                <div className={`${userHook.users.length > 0 ? "col-md-12 stretch-card grid-margin" : "d-none"}`}>
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
-                                            {users.length === 0 ? null : (
+                                            {userHook.users.length === 0 ? null : (
                                                 <>
-                                                    <Userpagination items={users} perpage={15} />
+                                                    <Userpagination items={userHook.users} perpage={15} />
                                                 </>
                                             )}
                                         </div>

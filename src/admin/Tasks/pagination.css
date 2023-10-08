@@ -16,3 +16,12 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 2;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 3;
+    }
+  }
