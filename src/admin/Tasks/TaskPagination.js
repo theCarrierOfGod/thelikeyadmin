@@ -37,7 +37,7 @@ const TaskPagination = ({ items, perpage }) => {
         try {
             const res = await axios.get(`${hook.endpoint}/admin/task/verify/${uid}`);
             if (res.data) {
-                hook.allUsers();
+                hook.allUsers('active', 1);
             }
             setAd(false)
         } catch (error) {
@@ -50,7 +50,7 @@ const TaskPagination = ({ items, perpage }) => {
         try {
             const res = await axios.get(`${hook.endpoint}/admin/task/pause/${uid}`);
             if (res.data) {
-                hook.allUsers();
+                hook.allUsers('active', 1);
             }
             setAd(false)
         } catch (error) {
