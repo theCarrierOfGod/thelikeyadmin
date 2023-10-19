@@ -138,7 +138,7 @@ const Admindashboard = () => {
                                             <h4 className="font-weight-normal mb-3 text-right">Pending Fundings
                                             </h4>
                                             <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
-                                                {pup}
+                                                {pending_fundings}
                                             </h2>
                                         </div>
                                     </div>
@@ -150,7 +150,7 @@ const Admindashboard = () => {
                                             <h4 className="font-weight-normal mb-3 text-right">Pending Upgrades
                                             </h4>
                                             <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
-                                                {pending_withdrawals}
+                                                {pup}
                                             </h2>
                                         </div>
                                     </div>
