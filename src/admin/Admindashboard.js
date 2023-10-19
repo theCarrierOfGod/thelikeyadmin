@@ -26,7 +26,8 @@ const Admindashboard = () => {
     const [users, setUsers] = useState(0);
     const [fundings, setFundings] = useState(0)
     const [withdrawals, setWithdrawals] = useState(0);
-    const [aproofs, setAProofs] = useState(0)
+    const [aproofs, setAProofs] = useState(0);
+    const [pup, setPup]
 
     const countUsers = async () => {
         try {
@@ -35,9 +36,10 @@ const Admindashboard = () => {
             setInactiveUsers(res.data.inactive_users);
             setPendingWithdrawals(res.data.pending_withdrawals)
             setPendingFundings(res.data.pending_fundings)
-            setApprovedFundings(res.data.approved_fundings);
+            setApprovedFundings(res.data.ptasks);
             setPendingProofs(res.data.pending_proofs)
             setAProofs(res.data.aproofs);
+            setPup(res.data.pup);
         } catch (error) {
             setActiveUsers(0);
             setInactiveUsers(0)
@@ -45,6 +47,7 @@ const Admindashboard = () => {
             setApprovedFundings(0)
             setPendingWithdrawals(0)
             setPendingProofs(0)
+            setPup(0)
             setAProofs(0)
         }
     }
@@ -120,7 +123,7 @@ const Admindashboard = () => {
                                     <div className="card bg-warning card-img-holder text-white">
                                         <div className="card-body p-2">
                                             <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
-                                            <h4 className="font-weight-normal mb-3 text-right">Approved Fundings
+                                            <h4 className="font-weight-normal mb-3 text-right">Pending Tasks
                                             </h4>
                                             <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
                                                 {approved_fundings}
@@ -135,7 +138,7 @@ const Admindashboard = () => {
                                             <h4 className="font-weight-normal mb-3 text-right">Pending Fundings
                                             </h4>
                                             <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
-                                                {pending_fundings}
+                                                {pup}
                                             </h2>
                                         </div>
                                     </div>
@@ -144,7 +147,7 @@ const Admindashboard = () => {
                                     <div className="card bg-info card-img-holder text-white">
                                         <div className="card-body p-2">
                                             <img src="/assets/images/dashboard/circle.svg" className="card-img-absolute" alt="CCC" />
-                                            <h4 className="font-weight-normal mb-3 text-right">Approved Withdrawals
+                                            <h4 className="font-weight-normal mb-3 text-right">Pending Upgrades
                                             </h4>
                                             <h2 className="mb-2 text-right" style={{ fontSize: '1.5rem' }}>
                                                 {pending_withdrawals}
