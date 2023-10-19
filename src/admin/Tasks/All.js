@@ -79,21 +79,20 @@ const All = () => {
                             </div>
 
                             <div className="row justify-content-center">
-                                <div className='col-md-4 stretch-card grid-margin'>
+                                <div className='col-6 col-md-4 stretch-card grid-margin'>
                                     <div class="select">
-                                        <select>
-                                            <option onChange={(e) => { setStatus(e.target.value) }}>Select status</option>
+                                        <select onChange={(e) => { setStatus(e.target.value) }}>
                                             <option value='active' selected={status === 'active'} >Active</option>
                                             <option value='completed' selected={status === 'completed'} >Completed</option>
                                             <option value='inactive' selected={status === 'inactive'} >Inactive</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div className='col-md-4 stretch-card grid-margin'>
+                                <div className='col-6 col-md-4 stretch-card grid-margin'>
                                     <div class="select">
                                         <select onChange={(e) => { setVerified(e.target.value) }}>
-                                            <option value='1' selected={verified == '1'} >Verified</option>
-                                            <option value='0' selected={verified == '0'} >Unverified</option>
+                                            <option value='1' selected={verified === 1} >Verified</option>
+                                            <option value='0' selected={verified === 0} >Unverified</option>
                                         </select>
                                     </div>
                                 </div> 
