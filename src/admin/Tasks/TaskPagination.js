@@ -40,7 +40,6 @@ const TaskPagination = ({ items, perpage }) => {
             }
             setAd(false)
         } catch (error) {
-            setUsers([])
             setAd(false)
         }
     }

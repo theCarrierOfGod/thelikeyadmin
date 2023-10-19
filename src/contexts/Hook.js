@@ -615,7 +615,7 @@ export const Hook = ({ children }) => {
     const allUsers = async (status, verified) => {
         setAd(true)
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/all_tasks/${status}/${verified}`);
+            const res = await axios.get(`${endpoint}/admin/all_tasks/${status}/${verified}`);
             if (res.data) {
                 setUsers(res.data);
             } else {
