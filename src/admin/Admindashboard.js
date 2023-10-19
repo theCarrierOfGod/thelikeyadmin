@@ -27,7 +27,7 @@ const Admindashboard = () => {
     const [fundings, setFundings] = useState(0)
     const [withdrawals, setWithdrawals] = useState(0);
     const [aproofs, setAProofs] = useState(0);
-    const [pup, setPup]
+    const [pup, setPup] = useState(0);
 
     const countUsers = async () => {
         try {
