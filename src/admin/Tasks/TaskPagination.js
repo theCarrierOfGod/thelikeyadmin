@@ -45,6 +45,19 @@ const TaskPagination = ({ items, perpage }) => {
         }
     }
 
+    const pauseTask = async (uid) => {
+        setAd(true)
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/task/pause/${uid}`);
+            if (res.data) {
+                hook.allUsers();
+            }
+            setAd(false)
+        } catch (error) {
+            setAd(false)
+        }
+    }
+
     return (
         <>
             <div>
@@ -91,7 +104,7 @@ const TaskPagination = ({ items, perpage }) => {
                         </div>
                         <footer class="card-footer">
                             <button
-                                class={`${user.verified === "0" ? 'd-none' : null} card-footer-item button is-primary`}
+                                class={`${user.verified === "0" ? 'd-none' : 'd-block'} card-footer-item button is-primary`}
                                 onClick={() => {
                                     if (window.confirm('Are you sure you want to publish this task?')) {
                                         verifyTask(user.unique_id);
@@ -102,7 +115,16 @@ const TaskPagination = ({ items, perpage }) => {
                             >
                                 Publish
                             </button>
-                            <button class="card-footer-item button is-warning">Cancel</button>
+                            <button
+                                class="card-footer-item button is-warning"
+                                onClick={() => {
+                                    if (window.confirm('Are you sure you want to pause this task?')) {
+                                        pauseTask(user.unique_id);
+                                    } else {
+                                        alert("Cancelled by user");
+                                    }
+                                }}
+                            >Pause</button>
                             <Link to={`/task/view/${user.unique_id}/admin`} class="card-footer-item button is-info">Proofs</Link>
                         </footer>
                     </div>
