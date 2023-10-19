@@ -91,7 +91,7 @@ const TaskPagination = ({ items, perpage }) => {
                         </div>
                         <footer class="card-footer">
                             <button
-                                class={`${user.verified === 0 ? 'd-none' : null} card-footer-item button is-primary`}
+                                class={`${user.verified === "0" ? 'd-none' : null} card-footer-item button is-primary`}
                                 onClick={() => {
                                     if (window.confirm('Are you sure you want to publish this task?')) {
                                         verifyTask(user.unique_id);
