@@ -25,24 +25,10 @@ const All = () => {
     const [status, setStatus] = useState('active');
     const [verified, setVerified] = useState(0);
 
-    const allUsers = async () => {
-        setAd(true)
-        try {
-            const res = await axios.get(`${hook.endpoint}/admin/all_tasks/${status}/${verified}`);
-            if (res.data) {
-                setUsers(res.data);
-            } else {
-                setUsers([])
-            }
-            setAd(false)
-        } catch (error) {
-            setUsers([])
-            setAd(false)
-        }
-    }
+    
 
     const getNow = () => {
-        allUsers();
+        hook.allUsers(status, verified);
     }
 
     useEffect(() => {

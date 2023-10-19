@@ -13,7 +13,7 @@ const TaskPagination = ({ items, perpage }) => {
     const [endOffset, setEndOffset] = useState(itemPerPage)
     const [currentPage, setCurrentPage] = useState(1);
     const currentItems = items.slice(itemOffset, endOffset);
-
+    const [ad, setAd] = useState(false);
 
     const handleNext = () => {
         if (pageCount !== currentPage) {
@@ -31,6 +31,20 @@ const TaskPagination = ({ items, perpage }) => {
         }
     }
 
+    const verifyTask = async (uid) => {
+        setAd(true)
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/verify/${uid}`);
+            if (res.data) {
+                hook.allUsers();
+            }
+            setAd(false)
+        } catch (error) {
+            setUsers([])
+            setAd(false)
+        }
+    }
+
     return (
         <>
             <div>
@@ -40,7 +54,7 @@ const TaskPagination = ({ items, perpage }) => {
                     </div>
                 </div>
             </div>
-            
+
             <div className={total === 0 ? "d-none" : "col-lg-12 mt-4 text-right"} style={{ textAlign: 'right' }}>
                 <span onClick={() => handlePrevious()} className={currentPage === 1 ? 'd-none' : 'button btn-info mr-3 p-1'} title={'Previous Page'} >Previous page</span>
                 <span onClick={() => handleNext()} className={currentPage === pageCount ? 'd-none' : 'button btn-info p-1'} title={'Next Page'}>Next page</span>
@@ -76,7 +90,14 @@ const TaskPagination = ({ items, perpage }) => {
                             <div class="content" dangerouslySetInnerHTML={{ __html: user.description }}></div>
                         </div>
                         <footer class="card-footer">
-                            <button class="card-footer-item button is-primary">Pause</button>
+                            <button
+                                class={`${user.verified === 1 ? 'd-none' : null} card-footer-item button is-primary`}
+                                onClick={() => {
+
+                                }}
+                            >
+                                Publish
+                            </button>
                             <button class="card-footer-item button is-warning">Cancel</button>
                             <Link to={`/task/view/${user.unique_id}/admin`} class="card-footer-item button is-info">Proofs</Link>
                         </footer>

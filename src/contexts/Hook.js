@@ -610,6 +610,22 @@ export const Hook = ({ children }) => {
         }
     }
 
+    const allUsers = async (status, verified) => {
+        setAd(true)
+        try {
+            const res = await axios.get(`${hook.endpoint}/admin/all_tasks/${status}/${verified}`);
+            if (res.data) {
+                setUsers(res.data);
+            } else {
+                setUsers([])
+            }
+            setAd(false)
+        } catch (error) {
+            setUsers([])
+            setAd(false)
+        }
+    }
+
     useEffect(() => {
         getLiveToken();
         setShowMenu(false)
@@ -623,7 +639,7 @@ export const Hook = ({ children }) => {
         <HookContext.Provider
             value={{
                 endpoint, showMenu, token, countries, platforms, promotionTypes, taskPlatforms, crypto,
-                toggleMenu, getPlatformPromotions, getDate, convertToCrypto, validateEmail, pickAd,
+                toggleMenu, getPlatformPromotions, getDate, convertToCrypto, validateEmail, pickAd, allUsers, 
             }}
         > {children}
         </HookContext.Provider>
