@@ -22,7 +22,7 @@ const All = () => {
     const [ad, setAd] = useState(true);
 
     const [status, setStatus] = useState('active');
-    const [verified, setVerified] = useState(0);
+    const [verified, setVerified] = useState(1);
 
     const getNow = () => {
         hook.allUsers(status, verified);
