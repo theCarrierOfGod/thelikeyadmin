@@ -3,6 +3,7 @@ import '../pagination.css'
 import axios from 'axios';
 import { useHook } from '../../contexts/Hook';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const TaskPagination = ({ items, perpage }) => {
     const hook = useHook();
@@ -92,7 +93,11 @@ const TaskPagination = ({ items, perpage }) => {
                             <button
                                 class={`${user.verified === 0 ? 'd-none' : null} card-footer-item button is-primary`}
                                 onClick={() => {
-                                    
+                                    if (window.confirm('Are you sure you want to publish this task?')) {
+                                        verifyTask(user.unique_id);
+                                    } else {
+                                        alert("Cancelled by user");
+                                    }
                                 }}
                             >
                                 Publish
