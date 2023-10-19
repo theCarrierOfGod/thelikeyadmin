@@ -92,9 +92,8 @@ const All = () => {
                                 <div className='col-md-4 stretch-card grid-margin'>
                                     <div class="select">
                                         <select onChange={(e) => { setVerified(e.target.value) }}>
-                                            <option>Select verification status</option>
-                                            <option value='1' selected={verified === '1'} >Verified</option>
-                                            <option value='0' selected={verified === '0'} >Unverified</option>
+                                            <option value='1' selected={verified == '1'} >Verified</option>
+                                            <option value='0' selected={verified == '0'} >Unverified</option>
                                         </select>
                                     </div>
                                 </div> 
@@ -110,7 +109,7 @@ const All = () => {
                                             ) : null}
                                             {users.length === 0 ? null : (
                                                 <>
-                                                    <TaskPagination items={users} perpage={15} />
+                                                    <TaskPagination items={users} perpage={25} />
                                                 </>
                                             )}
                                         </div>
