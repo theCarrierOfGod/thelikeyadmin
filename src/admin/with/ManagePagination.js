@@ -119,6 +119,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                     <th>Wallet To</th>
                                     <th>Amount</th>
                                     <th>User</th>
+                                    <th>Date</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -132,6 +133,7 @@ const ManagePagination = ({ items, perpage, type }) => {
                                     <th>Wallet To</th>
                                     <th>Amount</th>
                                     <th>User</th>
+                                    <th>Date</th>
                                     <th>Status</th>
                                 </tr>
                             </tfoot>
@@ -208,6 +210,9 @@ const ManagePagination = ({ items, perpage, type }) => {
                                             <td>{user.credits}</td>
                                             <td>
                                                 {user.username}
+                                            </td>
+                                            <td>
+                                                {user.created_at}
                                             </td>
                                             <td>{user.status}</td>
                                         </tr>
