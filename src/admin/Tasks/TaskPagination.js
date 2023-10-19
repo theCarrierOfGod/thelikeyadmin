@@ -35,7 +35,7 @@ const TaskPagination = ({ items, perpage }) => {
     const verifyTask = async (uid) => {
         setAd(true)
         try {
-            const res = await axios.get(`${hook.endpoint}/admin/verify/${uid}`);
+            const res = await axios.get(`${hook.endpoint}/admin/task/verify/${uid}`);
             if (res.data) {
                 hook.allUsers();
             }
