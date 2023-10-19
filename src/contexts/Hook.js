@@ -15,6 +15,8 @@ export const Hook = ({ children }) => {
     const [promotionTypes, setPromotionTypes] = useState([]);
     const [crypto, setCrypto] = useState(0);
     const [token, setToken] = useState();
+    const [ad, setAd] = useState('');
+    const [users, setUsers] = useState([]);
 
     const countries = [
         { name: 'Afghanistan', code: 'AF' },
@@ -638,7 +640,7 @@ export const Hook = ({ children }) => {
     return (
         <HookContext.Provider
             value={{
-                endpoint, showMenu, token, countries, platforms, promotionTypes, taskPlatforms, crypto,
+                endpoint, showMenu, token, countries, platforms, promotionTypes, taskPlatforms, crypto, users, ad,
                 toggleMenu, getPlatformPromotions, getDate, convertToCrypto, validateEmail, pickAd, allUsers, 
             }}
         > {children}

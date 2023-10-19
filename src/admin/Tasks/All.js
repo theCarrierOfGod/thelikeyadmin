@@ -21,11 +21,8 @@ const All = () => {
     const walletHook = useWallet();
     const [ad, setAd] = useState(true);
 
-    const [users, setUsers] = useState([]);
     const [status, setStatus] = useState('active');
     const [verified, setVerified] = useState(0);
-
-    
 
     const getNow = () => {
         hook.allUsers(status, verified);
@@ -85,16 +82,16 @@ const All = () => {
                                 <div className="col-md-12 stretch-card grid-margin">
                                     <div className="card card-img-holder text-white">
                                         <div className="card-body p-2">
-                                            {ad ? (
+                                            {hook.ad ? (
                                                 <>
                                                     <div className='notification is-info is-light text-center'>
                                                         <i className='fa fa-spinner fa-spin'></i>
                                                     </div>
                                                 </>
                                             ) : null}
-                                            {users.length === 0 ? null : (
+                                            {hook.users.length === 0 ? null : (
                                                 <>
-                                                    <TaskPagination items={users} perpage={25} />
+                                                    <TaskPagination items={hook.users} perpage={25} />
                                                 </>
                                             )}
                                         </div>
