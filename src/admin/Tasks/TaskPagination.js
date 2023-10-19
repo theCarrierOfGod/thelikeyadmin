@@ -79,32 +79,32 @@ const TaskPagination = ({ items, perpage }) => {
 
             <div className='card-columns'>
                 {currentItems.map((user, index) => (
-                    <div class="card">
-                        <header class="card-header bg-info">
-                            <p class="card-header-title" style={{ textTransform: 'uppercase' }}>
+                    <div className="card">
+                        <header className="card-header bg-info">
+                            <p className="card-header-title" style={{ textTransform: 'uppercase' }}>
                                 {user.title}
                             </p>
                         </header>
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-content">
-                                    <p class="title is-6">Created by: {user.created_by}</p>
-                                    <p class="subtitle is-6">Quantity: {user.target}</p>
-                                    <p class="subtitle is-6">Achieved: {user.achieved}</p>
-                                    <p class="title is-6">Approved: {user.approved}</p>
-                                    <p class="title is-6">Location: {user.location}</p>
-                                    <p class="subtitle is-6">Status: {user.status}</p>
-                                    <p class="subtitle is-6">CPU: {user.cpu}</p>
+                        <div className="card-content">
+                            <div className="media">
+                                <div className="media-content">
+                                    <p className="title is-6">Created by: {user.created_by}</p>
+                                    <p className="subtitle is-6">Quantity: {user.target}</p>
+                                    <p className="subtitle is-6">Achieved: {user.achieved}</p>
+                                    <p className="title is-6">Approved: {user.approved}</p>
+                                    <p className="title is-6">Location: {user.location}</p>
+                                    <p className="subtitle is-6">Status: {user.status}</p>
+                                    <p className="subtitle is-6">CPU: {user.cpu}</p>
                                     <p>
                                         <Link to={user.link}>{user.link}</Link>
                                     </p>
                                 </div>
                             </div>
-                            <div class="content" dangerouslySetInnerHTML={{ __html: user.description }}></div>
+                            <div className="content" dangerouslySetInnerHTML={{ __html: user.description }}></div>
                         </div>
-                        <footer class="card-footer">
+                        <footer className="card-footer">
                             <button
-                                class={`${user.verified === "0" ? 'd-none' : 'd-block'} card-footer-item button is-primary`}
+                                className={`${user.verified === "1" ? 'd-none' : 'd-block'} card-footer-item button is-primary`}
                                 onClick={() => {
                                     if (window.confirm('Are you sure you want to publish this task?')) {
                                         verifyTask(user.unique_id);
@@ -116,7 +116,7 @@ const TaskPagination = ({ items, perpage }) => {
                                 Publish
                             </button>
                             <button
-                                class="card-footer-item button is-warning"
+                                className={`${user.verified === "0" ? 'd-none' : 'd-block'} card-footer-item button is-primary`}
                                 onClick={() => {
                                     if (window.confirm('Are you sure you want to pause this task?')) {
                                         pauseTask(user.unique_id);
@@ -125,7 +125,7 @@ const TaskPagination = ({ items, perpage }) => {
                                     }
                                 }}
                             >Pause</button>
-                            <Link to={`/task/view/${user.unique_id}/admin`} class="card-footer-item button is-info">Proofs</Link>
+                            <Link to={`/task/view/${user.unique_id}/admin`} className="card-footer-item button is-info">Proofs</Link>
                         </footer>
                     </div>
                 ))}
